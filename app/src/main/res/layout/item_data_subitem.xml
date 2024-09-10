@@ -1,0 +1,11 @@
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="18sp"
+    android:gravity="center"
+    android:layout_margin="8dp"
+    android:background="#D3ECA7"
+    android:text="TEST A SUBITEM 1"
+    android:padding="16dp" />
