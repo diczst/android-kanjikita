@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.model.KanjiItem
-import com.neonusa.belajarkanjijlpt.utils.generateDummySubitemKanjiData
+import com.neonusa.belajarkanjijlpt.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val itemsPerPage = 9
 
     private lateinit var kanjiItems: List<KanjiItem>
-    val subitemData = generateDummySubitemKanjiData()
+    private lateinit var kanjiSubitems: List<KanjiSubitem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,29 +61,23 @@ class MainActivity : AppCompatActivity() {
             val pageData = kanjiItems.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
                 // when item clicked
-
+                showSubItems(it)
             }
             binding.recyclerview.adapter = kanjiAdapter
         }
-    }
-
-
-    private fun updateRecyclerView() {
-        val start = currentPage * itemsPerPage
-//        val end = minOf(start + itemsPerPage, kanjiData.size)
-//        val pageData = kanjiData.subList(start, end)
-//
-//        adapter = GridAdapter(pageData) {
-//            showSubItems(it)
-//        }
-        binding.recyclerview.adapter = adapter
         binding.pageTitle.text = "Halaman ${currentPage + 1}"
     }
 
+
+
     private fun showSubItems(item: KanjiItem) {
-        // Filter subitems based on the selected KanjiItem
-        val subItems = subitemData.filter { it.kanji_item_id == item.id }
-        subItemAdapter = SubItemAdapter(subItems)
-        binding.recyclerviewSubitem.adapter = subItemAdapter
+        val jsonString = loadJSONFromAssets("kanji_subitems.json", this)
+        if (jsonString != null) {
+            // Parse JSON to list
+            val kanjiListType = object : TypeToken<List<KanjiSubitem>>() {}.type
+            kanjiSubitems = Gson().fromJson(jsonString, kanjiListType)
+            subItemAdapter = SubItemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
+            binding.recyclerviewSubitem.adapter = subItemAdapter
+        }
     }
 }
