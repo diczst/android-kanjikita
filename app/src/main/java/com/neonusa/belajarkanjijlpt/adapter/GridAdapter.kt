@@ -1,11 +1,12 @@
-package com.neonusa.belajarkanjijlpt
+package com.neonusa.belajarkanjijlpt.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.neonusa.belajarkanjijlpt.model.KanjiItem
+import com.neonusa.belajarkanjijlpt.R
+import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 
 class GridAdapter(private val items: List<KanjiItem>,
                   private val onItemClick: (KanjiItem) -> Unit) :

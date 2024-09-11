@@ -1,4 +1,4 @@
-package com.neonusa.belajarkanjijlpt.model
+package com.neonusa.belajarkanjijlpt.data.model
 
 data class KanjiItem (
     val id: Int,

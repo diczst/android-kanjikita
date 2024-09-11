@@ -1,7 +1,7 @@
 package com.neonusa.belajarkanjijlpt.utils
 
-import com.neonusa.belajarkanjijlpt.model.KanjiItem
-import com.neonusa.belajarkanjijlpt.model.KanjiSubitem
+import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
+import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 
 fun generateDummyKanjiData(): List<KanjiItem>{
     val kanjiData = listOf(

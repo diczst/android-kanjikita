@@ -1,19 +1,21 @@
-package com.neonusa.belajarkanjijlpt
+package com.neonusa.belajarkanjijlpt.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.neonusa.belajarkanjijlpt.adapter.GridAdapter
+import com.neonusa.belajarkanjijlpt.adapter.SubitemAdapter
 import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
-import com.neonusa.belajarkanjijlpt.model.KanjiItem
-import com.neonusa.belajarkanjijlpt.model.KanjiSubitem
+import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
+import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: GridAdapter
-    private lateinit var subItemAdapter: SubItemAdapter
+    private lateinit var subItemAdapter: SubitemAdapter
 
     private var currentPage = 0
     private val itemsPerPage = 9
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             // Parse JSON to list
             val kanjiListType = object : TypeToken<List<KanjiSubitem>>() {}.type
             kanjiSubitems = Gson().fromJson(jsonString, kanjiListType)
-            subItemAdapter = SubItemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
+            subItemAdapter = SubitemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
             binding.recyclerviewSubitem.adapter = subItemAdapter
         }
     }

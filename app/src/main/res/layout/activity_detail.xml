@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.detail.DetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarlayout_detail"
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="JLPT N5"
+                android:text="JLPT N*"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Halaman 1"/>
+            android:text="Halaman *"/>
 
         <ImageView
             android:id="@+id/next_button"

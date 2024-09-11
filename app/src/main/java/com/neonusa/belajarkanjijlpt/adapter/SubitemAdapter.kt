@@ -1,14 +1,14 @@
-package com.neonusa.belajarkanjijlpt
+package com.neonusa.belajarkanjijlpt.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.neonusa.belajarkanjijlpt.model.KanjiSubitem
+import com.neonusa.belajarkanjijlpt.R
+import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 
-class SubItemAdapter(private val data: List<KanjiSubitem>) : RecyclerView.Adapter<SubItemAdapter.ViewHolder>() {
-
+class SubitemAdapter(private val data: List<KanjiSubitem>) : RecyclerView.Adapter<SubitemAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordTextView: TextView = itemView.findViewById(R.id.kanji_text_view_word)
         val furiganaTextView: TextView = itemView.findViewById(R.id.furigana_text_view_word)
