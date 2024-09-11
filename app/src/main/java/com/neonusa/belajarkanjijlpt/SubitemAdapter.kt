@@ -5,21 +5,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.neonusa.belajarkanjijlpt.model.KanjiSubitem
 
-class SubItemAdapter(private val data: List<String>) : RecyclerView.Adapter<SubItemAdapter.ViewHolder>() {
+class SubItemAdapter(private val data: List<KanjiSubitem>) : RecyclerView.Adapter<SubItemAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView: TextView = itemView.findViewById(android.R.id.text1)
+        val wordTextView: TextView = itemView.findViewById(R.id.kanji_text_view_word)
+        val furiganaTextView: TextView = itemView.findViewById(R.id.furigana_text_view_word)
+        val romajiTextView: TextView = itemView.findViewById(R.id.romaji_text_view_word)
+        val meanTextView: TextView = itemView.findViewById(R.id.mean_text_view_word)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(android.R.layout.simple_list_item_1, parent, false)
+            .inflate(R.layout.item_kanji_word_with_romaji, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = data[position]
+        val subItem = data[position]
+        holder.wordTextView.text = subItem.kanji_word
+        holder.furiganaTextView.text = subItem.furigana
+        holder.romajiTextView.text = subItem.romaji
+        holder.meanTextView.text = subItem.mean
     }
 
     override fun getItemCount(): Int = data.size
