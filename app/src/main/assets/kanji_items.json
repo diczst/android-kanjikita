@@ -1,0 +1,92 @@
+[
+    {
+      "id": 1,
+      "kanji": "日",
+      "mean": "Matahari"
+    },
+    {
+      "id": 2,
+      "kanji": "月",
+      "mean": "Bulan"
+    },
+    {
+      "id": 3,
+      "kanji": "山",
+      "mean": "Gunung"
+    },
+    {
+      "id": 4,
+      "kanji": "川",
+      "mean": "Sungai"
+    },
+    {
+      "id": 5,
+      "kanji": "田",
+      "mean": "Sawah"
+    },
+    {
+      "id": 6,
+      "kanji": "人",
+      "mean": "Orang"
+    },
+    {
+      "id": 7,
+      "kanji": "火",
+      "mean": "Api"
+    },
+    {
+      "id": 8,
+      "kanji": "水",
+      "mean": "Air"
+    },
+    {
+      "id": 9,
+      "kanji": "木",
+      "mean": "Pohon"
+    },
+    {
+      "id": 10,
+      "kanji": "金",
+      "mean": "Emas"
+    },
+    {
+      "id": 11,
+      "kanji": "土",
+      "mean": "Tanah"
+    },
+    {
+      "id": 12,
+      "kanji": "空",
+      "mean": "Langit"
+    },
+    {
+      "id": 13,
+      "kanji": "風",
+      "mean": "Angin"
+    },
+    {
+      "id": 14,
+      "kanji": "花",
+      "mean": "Bunga"
+    },
+    {
+      "id": 15,
+      "kanji": "車",
+      "mean": "Mobil"
+    },
+    {
+      "id": 16,
+      "kanji": "電",
+      "mean": "Listrik"
+    },
+    {
+      "id": 17,
+      "kanji": "雨",
+      "mean": "Hujan"
+    },
+    {
+      "id": 18,
+      "kanji": "魚",
+      "mean": "Ikan"
+    }
+]
