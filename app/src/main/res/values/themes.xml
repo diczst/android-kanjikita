@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BelajarKanjiJLPT" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="android:statusBarColor">@color/colorSecondary</item>
     </style>
 
     <style name="Theme.BelajarKanjiJLPT" parent="Base.Theme.BelajarKanjiJLPT" />

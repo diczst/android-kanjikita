@@ -39,8 +39,27 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
-
+        loadKanjiData()
     }
 
+    private fun loadKanjiData(){
+        val start = currentPage * itemsPerPage
 
+        val jsonString = loadJSONFromAssets("kanji_items.json", this)
+        if (jsonString != null) {
+            // Parse JSON to list
+            val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
+            kanjiItems = Gson().fromJson(jsonString, kanjiListType)
+            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
+
+                val end = minOf(start + itemsPerPage, kanjiItems.size)
+            val pageData = kanjiItems.subList(start, end)
+            val kanjiAdapter = GridAdapter(pageData){
+                // when item clicked
+//                showSubItems(it)
+            }
+            binding.recyclerview.adapter = kanjiAdapter
+        }
+        binding.pageTitle.text = "Halaman ${currentPage + 1}"
+    }
 }

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+
 }
 
 android {
@@ -52,4 +54,21 @@ dependencies {
 
     // untuk deserialisasi json
     implementation ("com.google.code.gson:gson:2.8.6")
+
+    // Kotpref
+    implementation ("com.chibatching.kotpref:kotpref:2.13.1")
+
+    // Google Admob
+    implementation ("com.google.android.gms:play-services-ads:21.1.0")
+
+    // koin
+    implementation ("io.insert-koin:koin-core:2.2.2")
+    implementation ("io.insert-koin:koin-androidx-viewmodel:2.2.2")
+
+    //room
+    implementation("androidx.room:room-runtime:2.5.0-alpha02")
+    kapt("androidx.room:room-compiler:2.5.0-alpha02")
+
+    // Google Admob
+//    implementation ("com.google.android.gms:play-services-ads:21.1.0")
 }

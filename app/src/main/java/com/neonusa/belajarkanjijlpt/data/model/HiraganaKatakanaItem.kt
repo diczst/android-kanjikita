@@ -1,4 +1,6 @@
 package com.neonusa.belajarkanjijlpt.data.model
 
-class HiraganaKatakanaItem {
-}
+data class HiraganaKatakanaItem (
+    val letter: String,
+    val pronounce: String,
+)
