@@ -68,6 +68,11 @@ class DetailActivity : AppCompatActivity() {
         showSubItems(kanjiItems.first())
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
+    }
+
     private fun loadKanjiData(){
         val start = currentPage * itemsPerPage
 
