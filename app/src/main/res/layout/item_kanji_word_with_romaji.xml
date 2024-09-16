@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             style="@style/TextAppearance.AppCompat.Title"
+            android:textSize="14sp"
             android:text="人生"/>
 
         <LinearLayout
@@ -31,7 +32,7 @@
                 android:id="@+id/furigana_text_view_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:text="じんせい"/>
 

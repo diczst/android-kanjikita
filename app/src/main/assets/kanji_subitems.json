@@ -318,5 +318,407 @@
     "furigana": "のみみず",
     "romaji": "Nomimizu",
     "mean": "Air Minum"
+  },
+  {
+    "id": 41,
+    "kanji_item_id": 9,
+    "kanji_word": "木曜日",
+    "furigana": "もくようび",
+    "romaji": "Mokuyoubi",
+    "mean": "Hari Kamis"
+  },
+  {
+    "id": 42,
+    "kanji_item_id": 9,
+    "kanji_word": "木材",
+    "furigana": "もくざい",
+    "romaji": "Mokuzai",
+    "mean": "Kayu"
+  },
+  {
+    "id": 43,
+    "kanji_item_id": 9,
+    "kanji_word": "植木",
+    "furigana": "うえき",
+    "romaji": "Ueki",
+    "mean": "Pohon yang Ditaman"
+  },
+  {
+    "id": 44,
+    "kanji_item_id": 9,
+    "kanji_word": "大木",
+    "furigana": "たいぼく",
+    "romaji": "Taiboku",
+    "mean": "Pohon Besar"
+  },
+  {
+    "id": 45,
+    "kanji_item_id": 9,
+    "kanji_word": "木陰",
+    "furigana": "こかげ",
+    "romaji": "Kokage",
+    "mean": "Naungan Pohon"
+  },
+  {
+    "id": 46,
+    "kanji_item_id": 10,
+    "kanji_word": "金曜日",
+    "furigana": "きんようび",
+    "romaji": "Kinyoubi",
+    "mean": "Hari Jumat"
+  },
+  {
+    "id": 47,
+    "kanji_item_id": 10,
+    "kanji_word": "金持ち",
+    "furigana": "かねもち",
+    "romaji": "Kanemochi",
+    "mean": "Orang Kaya"
+  },
+  {
+    "id": 48,
+    "kanji_item_id": 10,
+    "kanji_word": "金額",
+    "furigana": "きんがく",
+    "romaji": "Kingaku",
+    "mean": "Jumlah Uang"
+  },
+  {
+    "id": 49,
+    "kanji_item_id": 10,
+    "kanji_word": "料金",
+    "furigana": "りょうきん",
+    "romaji": "Ryoukin",
+    "mean": "Biaya"
+  },
+  {
+    "id": 50,
+    "kanji_item_id": 10,
+    "kanji_word": "現金",
+    "furigana": "げんきん",
+    "romaji": "Genkin",
+    "mean": "Uang Tunai"
+  },
+  {
+    "id": 51,
+    "kanji_item_id": 11,
+    "kanji_word": "土地",
+    "furigana": "とち",
+    "romaji": "Tochi",
+    "mean": "Tanah (lahan)"
+  },
+  {
+    "id": 52,
+    "kanji_item_id": 11,
+    "kanji_word": "土曜日",
+    "furigana": "どようび",
+    "romaji": "Doyoubi",
+    "mean": "Hari Sabtu"
+  },
+  {
+    "id": 53,
+    "kanji_item_id": 11,
+    "kanji_word": "土手",
+    "furigana": "どて",
+    "romaji": "Dote",
+    "mean": "Tanggul"
+  },
+  {
+    "id": 54,
+    "kanji_item_id": 11,
+    "kanji_word": "土壌",
+    "furigana": "どじょう",
+    "romaji": "Dojou",
+    "mean": "Tanah (untuk pertanian)"
+  },
+  {
+    "id": 55,
+    "kanji_item_id": 11,
+    "kanji_word": "粘土",
+    "furigana": "ねんど",
+    "romaji": "Nendo",
+    "mean": "Tanah Liat"
+  },
+  {
+    "id": 56,
+    "kanji_item_id": 12,
+    "kanji_word": "空港",
+    "furigana": "くうこう",
+    "romaji": "Kuukou",
+    "mean": "Bandara"
+  },
+  {
+    "id": 57,
+    "kanji_item_id": 12,
+    "kanji_word": "空気",
+    "furigana": "くうき",
+    "romaji": "Kuuki",
+    "mean": "Udara"
+  },
+  {
+    "id": 58,
+    "kanji_item_id": 12,
+    "kanji_word": "空中",
+    "furigana": "くうちゅう",
+    "romaji": "Kuuchuu",
+    "mean": "Di Langit"
+  },
+  {
+    "id": 59,
+    "kanji_item_id": 12,
+    "kanji_word": "天空",
+    "furigana": "てんくう",
+    "romaji": "Tenkuu",
+    "mean": "Langit"
+  },
+  {
+    "id": 60,
+    "kanji_item_id": 12,
+    "kanji_word": "空き",
+    "furigana": "あき",
+    "romaji": "Aki",
+    "mean": "Kosong"
+  },
+  {
+    "id": 61,
+    "kanji_item_id": 13,
+    "kanji_word": "風邪",
+    "furigana": "かぜ",
+    "romaji": "Kaze",
+    "mean": "Pilek"
+  },
+  {
+    "id": 62,
+    "kanji_item_id": 13,
+    "kanji_word": "風力",
+    "furigana": "ふうりょく",
+    "romaji": "Fuuryoku",
+    "mean": "Kekuatan Angin"
+  },
+  {
+    "id": 63,
+    "kanji_item_id": 13,
+    "kanji_word": "台風",
+    "furigana": "たいふう",
+    "romaji": "Taifuu",
+    "mean": "Topan"
+  },
+  {
+    "id": 64,
+    "kanji_item_id": 13,
+    "kanji_word": "風速",
+    "furigana": "ふうそく",
+    "romaji": "Fuusoku",
+    "mean": "Kecepatan Angin"
+  },
+  {
+    "id": 65,
+    "kanji_item_id": 13,
+    "kanji_word": "風景",
+    "furigana": "ふうけい",
+    "romaji": "Fuukei",
+    "mean": "Pemandangan"
+  },
+  {
+    "id": 66,
+    "kanji_item_id": 14,
+    "kanji_word": "花火",
+    "furigana": "はなび",
+    "romaji": "Hanabi",
+    "mean": "Kembang Api"
+  },
+  {
+    "id": 67,
+    "kanji_item_id": 14,
+    "kanji_word": "花瓶",
+    "furigana": "かびん",
+    "romaji": "Kabin",
+    "mean": "Vas Bunga"
+  },
+  {
+    "id": 68,
+    "kanji_item_id": 14,
+    "kanji_word": "花見",
+    "furigana": "はなみ",
+    "romaji": "Hanami",
+    "mean": "Melihat Bunga"
+  },
+  {
+    "id": 69,
+    "kanji_item_id": 14,
+    "kanji_word": "花束",
+    "furigana": "はなたば",
+    "romaji": "Hanataba",
+    "mean": "Karangan Bunga"
+  },
+  {
+    "id": 70,
+    "kanji_item_id": 14,
+    "kanji_word": "花園",
+    "furigana": "はなぞの",
+    "romaji": "Hanazono",
+    "mean": "Taman Bunga"
+  },
+  {
+    "id": 71,
+    "kanji_item_id": 15,
+    "kanji_word": "車椅子",
+    "furigana": "くるまいす",
+    "romaji": "Kuruma-isu",
+    "mean": "Kursi Roda"
+  },
+  {
+    "id": 72,
+    "kanji_item_id": 15,
+    "kanji_word": "電車",
+    "furigana": "でんしゃ",
+    "romaji": "Densha",
+    "mean": "Kereta Listrik"
+  },
+  {
+    "id": 73,
+    "kanji_item_id": 15,
+    "kanji_word": "自動車",
+    "furigana": "じどうしゃ",
+    "romaji": "Jidousha",
+    "mean": "Mobil"
+  },
+  {
+    "id": 74,
+    "kanji_item_id": 15,
+    "kanji_word": "車道",
+    "furigana": "しゃどう",
+    "romaji": "Shadou",
+    "mean": "Jalan Mobil"
+  },
+  {
+    "id": 75,
+    "kanji_item_id": 15,
+    "kanji_word": "駐車場",
+    "furigana": "ちゅうしゃじょう",
+    "romaji": "Chuushajou",
+    "mean": "Tempat Parkir"
+  },
+  {
+    "id": 76,
+    "kanji_item_id": 16,
+    "kanji_word": "電気",
+    "furigana": "でんき",
+    "romaji": "Denki",
+    "mean": "Listrik"
+  },
+  {
+    "id": 77,
+    "kanji_item_id": 16,
+    "kanji_word": "電車",
+    "furigana": "でんしゃ",
+    "romaji": "Densha",
+    "mean": "Kereta Listrik"
+  },
+  {
+    "id": 78,
+    "kanji_item_id": 16,
+    "kanji_word": "電話",
+    "furigana": "でんわ",
+    "romaji": "Denwa",
+    "mean": "Telepon"
+  },
+  {
+    "id": 79,
+    "kanji_item_id": 16,
+    "kanji_word": "電圧",
+    "furigana": "でんあつ",
+    "romaji": "Den'atsu",
+    "mean": "Tegangan Listrik"
+  },
+  {
+    "id": 80,
+    "kanji_item_id": 16,
+    "kanji_word": "電池",
+    "furigana": "でんち",
+    "romaji": "Denchi",
+    "mean": "Baterai"
+  },
+  {
+    "id": 81,
+    "kanji_item_id": 17,
+    "kanji_word": "大雨",
+    "furigana": "おおあめ",
+    "romaji": "Ooame",
+    "mean": "Hujan Lebat"
+  },
+  {
+    "id": 82,
+    "kanji_item_id": 17,
+    "kanji_word": "小雨",
+    "furigana": "こさめ",
+    "romaji": "Kosame",
+    "mean": "Gerimis"
+  },
+  {
+    "id": 83,
+    "kanji_item_id": 17,
+    "kanji_word": "雨雲",
+    "furigana": "あまぐも",
+    "romaji": "Amagumo",
+    "mean": "Awan Hujan"
+  },
+  {
+    "id": 84,
+    "kanji_item_id": 17,
+    "kanji_word": "梅雨",
+    "furigana": "つゆ",
+    "romaji": "Tsuyu",
+    "mean": "Musim Hujan"
+  },
+  {
+    "id": 85,
+    "kanji_item_id": 17,
+    "kanji_word": "雨天",
+    "furigana": "うてん",
+    "romaji": "Uten",
+    "mean": "Cuaca Hujan"
+  },
+  {
+    "id": 86,
+    "kanji_item_id": 18,
+    "kanji_word": "魚介類",
+    "furigana": "ぎょかいるい",
+    "romaji": "Gyokairui",
+    "mean": "Makanan Laut"
+  },
+  {
+    "id": 87,
+    "kanji_item_id": 18,
+    "kanji_word": "金魚",
+    "furigana": "きんぎょ",
+    "romaji": "Kingyo",
+    "mean": "Ikan Mas"
+  },
+  {
+    "id": 88,
+    "kanji_item_id": 18,
+    "kanji_word": "魚市場",
+    "furigana": "うおいちば",
+    "romaji": "Uoichiba",
+    "mean": "Pasar Ikan"
+  },
+  {
+    "id": 89,
+    "kanji_item_id": 18,
+    "kanji_word": "熱帯魚",
+    "furigana": "ねったいぎょ",
+    "romaji": "Nettaigyo",
+    "mean": "Ikan Tropis"
+  },
+  {
+    "id": 90,
+    "kanji_item_id": 18,
+    "kanji_word": "魚屋",
+    "furigana": "さかなや",
+    "romaji": "Sakanaya",
+    "mean": "Toko Ikan"
   }
+
+
 ]
