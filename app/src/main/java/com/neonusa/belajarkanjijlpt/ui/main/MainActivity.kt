@@ -1,5 +1,6 @@
 package com.neonusa.belajarkanjijlpt.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import com.neonusa.belajarkanjijlpt.data.model.JLPTLevelItem
 import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
+import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
 import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: GridAdapter
     private lateinit var subItemAdapter: SubitemAdapter
-
 
     private lateinit var kanjiSubitems: List<KanjiSubitem>
 
@@ -56,7 +57,9 @@ class MainActivity : AppCompatActivity() {
 //        supportActionBar!!.setDisplayShowTitleEnabled(false)
         supportActionBar!!.title = "Belajar Kanji"
 
-        val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels)
+        val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
+            startActivity(Intent(this,DetailActivity::class.java))
+        }
         binding.rvLevels.layoutManager = GridLayoutManager(this, 5)
         binding.rvLevels.adapter = jlptLevelAdapter
 

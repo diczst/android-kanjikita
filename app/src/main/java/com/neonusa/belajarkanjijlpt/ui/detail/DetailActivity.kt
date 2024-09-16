@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.R
@@ -15,6 +16,7 @@ import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.databinding.ActivityDetailBinding
 import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
+import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
 
 class DetailActivity : AppCompatActivity() {
@@ -26,13 +28,22 @@ class DetailActivity : AppCompatActivity() {
     private val itemsPerPage = 9
 
     private lateinit var kanjiItems: List<KanjiItem>
+    private val kanjiOfTheDayItems = generateDummyKOTD()
+
     private lateinit var kanjiSubitems: List<KanjiSubitem>
     private lateinit var jlptLevel: String
+
+    private var jsonString: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        jsonString = loadJSONFromAssets("kanji_items.json", this)
+        // Parse JSON to list
+        val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
+        kanjiItems = Gson().fromJson(jsonString, kanjiListType)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,26 +51,30 @@ class DetailActivity : AppCompatActivity() {
 
         binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
         loadKanjiData()
+        showSubItems(kanjiItems.first())
     }
+
 
     private fun loadKanjiData(){
         val start = currentPage * itemsPerPage
 
-        val jsonString = loadJSONFromAssets("kanji_items.json", this)
         if (jsonString != null) {
-            // Parse JSON to list
-            val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
-            kanjiItems = Gson().fromJson(jsonString, kanjiListType)
-            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
+//            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
 
                 val end = minOf(start + itemsPerPage, kanjiItems.size)
             val pageData = kanjiItems.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
                 // when item clicked
-//                showSubItems(it)
+                showSubItems(it)
             }
             binding.recyclerview.adapter = kanjiAdapter
         }
         binding.pageTitle.text = "Halaman ${currentPage + 1}"
+    }
+
+    private fun showSubItems(item: KanjiItem){
+        val kotdAdapter = SubitemAdapter(kanjiOfTheDayItems.filter { it.kanji_item_id == item.id })
+        binding.recyclerviewSubitem.layoutManager = LinearLayoutManager(this)
+        binding.recyclerviewSubitem.adapter = kotdAdapter
     }
 }
