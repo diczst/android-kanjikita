@@ -49,18 +49,30 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        binding.prevButton.setOnClickListener {
+            if (currentPage > 0) {
+                currentPage--
+                loadKanjiData()
+            }
+        }
+
+        binding.nextButton.setOnClickListener {
+            if ((currentPage + 1) * itemsPerPage < kanjiItems.size) {
+                currentPage++
+                loadKanjiData()
+            }
+        }
+
         binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
         loadKanjiData()
         showSubItems(kanjiItems.first())
     }
-
 
     private fun loadKanjiData(){
         val start = currentPage * itemsPerPage
 
         if (jsonString != null) {
 //            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
-
                 val end = minOf(start + itemsPerPage, kanjiItems.size)
             val pageData = kanjiItems.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
