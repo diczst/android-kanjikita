@@ -77,10 +77,10 @@ class MainActivity : AppCompatActivity() {
         binding.rvKotd.layoutManager = LinearLayoutManager(this)
         binding.rvKotd.adapter = kotdAdapter
 
-        binding.tvLearned.setOnClickListener {
-            val intent = Intent(this,LearnedActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.tvLearned.setOnClickListener {
+//            val intent = Intent(this,LearnedActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.tvHiragana.setOnClickListener {
             val intent = Intent(this,LetterActivity::class.java)
