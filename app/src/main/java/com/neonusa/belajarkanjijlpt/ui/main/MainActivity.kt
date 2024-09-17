@@ -22,6 +22,8 @@ import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
+import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
+import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
@@ -74,6 +76,21 @@ class MainActivity : AppCompatActivity() {
         val kotdAdapter = SubitemAdapter(kanjiOfTheDayItems)
         binding.rvKotd.layoutManager = LinearLayoutManager(this)
         binding.rvKotd.adapter = kotdAdapter
+
+        binding.tvLearned.setOnClickListener {
+            val intent = Intent(this,LearnedActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvHiragana.setOnClickListener {
+            val intent = Intent(this,LetterActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvKatakana.setOnClickListener {
+            val intent = Intent(this,LetterActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

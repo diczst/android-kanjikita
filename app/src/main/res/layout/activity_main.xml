@@ -81,7 +81,7 @@
                         android:layout_marginStart="4dp"
                         android:textColor="?attr/colorPrimary"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:text="24"/>
+                        android:text="24/1000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,6 +92,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_learned"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -147,6 +148,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/tv_hiragana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -181,6 +183,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/tv_katakana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
