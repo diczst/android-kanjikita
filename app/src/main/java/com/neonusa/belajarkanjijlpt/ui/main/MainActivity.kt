@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
 
         loadAds()
 
-        setSupportActionBar(binding.toolbar)
+//        setSupportActionBar(binding.toolbar)
 //        supportActionBar!!.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.title = "Belajar Kanji"
+//        supportActionBar!!.title = "Belajar Kanji"
 
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
             startActivity(Intent(this,DetailActivity::class.java))
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity() {
         binding.rvLevels.adapter = jlptLevelAdapter
 
         val hiraganaAdapter = HiraganaKatakanaAdapter(hiraganaItems){}
-        binding.rvHiragana.layoutManager = GridLayoutManager(this, 5)
-        binding.rvHiragana.adapter = hiraganaAdapter
-
-        val katakanaAdapter = HiraganaKatakanaAdapter(katakanaItems){}
-        binding.rvKatakana.layoutManager = GridLayoutManager(this, 5)
-        binding.rvKatakana.adapter = katakanaAdapter
+//        binding.rvHiragana.layoutManager = GridLayoutManager(this, 5)
+//        binding.rvHiragana.adapter = hiraganaAdapter
+//
+//        val katakanaAdapter = HiraganaKatakanaAdapter(katakanaItems){}
+//        binding.rvKatakana.layoutManager = GridLayoutManager(this, 5)
+//        binding.rvKatakana.adapter = katakanaAdapter
 
         val kotdAdapter = SubitemAdapter(kanjiOfTheDayItems)
         binding.rvKotd.layoutManager = LinearLayoutManager(this)
@@ -82,15 +82,15 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        binding.tvHiragana.setOnClickListener {
-            val intent = Intent(this,LetterActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.tvKatakana.setOnClickListener {
-            val intent = Intent(this,LetterActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.tvHiragana.setOnClickListener {
+//            val intent = Intent(this,LetterActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.tvKatakana.setOnClickListener {
+//            val intent = Intent(this,LetterActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 
