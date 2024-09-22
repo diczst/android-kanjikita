@@ -10,11 +10,11 @@ import com.neonusa.belajarkanjijlpt.data.model.HiraganaKatakanaItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 
 class HiraganaKatakanaAdapter(private val items: List<HiraganaKatakanaItem>,
-                  private val onItemClick: (KanjiItem) -> Unit) :
+                  private val onItemClick: (HiraganaKatakanaItem) -> Unit) :
     RecyclerView.Adapter<HiraganaKatakanaAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val kanjiTextView: TextView = itemView.findViewById(R.id.text_hiragana_katakana)
+        val letterTextView: TextView = itemView.findViewById(R.id.text_hiragana_katakana)
         val meanTextView: TextView = itemView.findViewById(R.id.text_pronounce)
     }
 
@@ -27,10 +27,36 @@ class HiraganaKatakanaAdapter(private val items: List<HiraganaKatakanaItem>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hiraganaKatakanaItem = items[position]
-        holder.kanjiTextView.text = hiraganaKatakanaItem.letter
-        holder.meanTextView.text = hiraganaKatakanaItem.pronounce
+
+        if (hiraganaKatakanaItem.letter.isNotEmpty()) {
+            holder.letterTextView.text = hiraganaKatakanaItem.letter
+            holder.meanTextView.text = hiraganaKatakanaItem.pronounce
+            holder.itemView.visibility = View.VISIBLE
+            holder.itemView.isEnabled = true
+
+        } else {
+            holder.itemView.visibility = View.GONE
+            holder.itemView.isEnabled = false
+        }
+
         holder.itemView.setOnClickListener {
-//            onItemClick(kanjiItem)
+            // animasi saat diklik
+            // Animasi untuk memperbesar item saat diklik
+            it.animate()
+                .scaleX(1.1f)  // Perbesar skala X
+                .scaleY(1.1f)  // Perbesar skala Y
+                .setDuration(100)  // Durasi animasi
+                .withEndAction {
+                    // Kembalikan ke ukuran semula
+                    it.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+                }
+                .start()
+
+            onItemClick(hiraganaKatakanaItem)
         }
     }
 

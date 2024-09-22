@@ -2,6 +2,8 @@ package com.neonusa.belajarkanjijlpt.ui.letter
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,8 +20,9 @@ import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaCombinationGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaDakuonGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
+import java.util.Locale
 
-class LetterActivity : AppCompatActivity() {
+class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var binding: ActivityLetterBinding
 
     private lateinit var letterType: String
@@ -30,11 +33,14 @@ class LetterActivity : AppCompatActivity() {
     private lateinit var dakuonHirakataItems: List<HiraganaKatakanaItem>
     private lateinit var combinationHirakataItems: List<HiraganaKatakanaItem>
 
+    private lateinit var tts: TextToSpeech
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLetterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        tts = TextToSpeech(this, this) // Inisialisasi TTS
 
         letterType = intent.getStringExtra(LETTER_TYPE)!!
 
@@ -58,9 +64,9 @@ class LetterActivity : AppCompatActivity() {
         binding.tvToolbarTitleLetter.text = actionBarTitle
         binding.tvDescHirakata.text = desc
 
-        val hirakataAdapter = HiraganaKatakanaAdapter(hirakataItems){}
-        val dakuonHirakataAdapter = HiraganaKatakanaAdapter(dakuonHirakataItems){}
-        val combinationHirakataAdapter = HiraganaKatakanaAdapter(combinationHirakataItems){}
+        val hirakataAdapter = HiraganaKatakanaAdapter(hirakataItems){speakLetter(it)}
+        val dakuonHirakataAdapter = HiraganaKatakanaAdapter(dakuonHirakataItems){speakLetter(it)}
+        val combinationHirakataAdapter = HiraganaKatakanaAdapter(combinationHirakataItems){speakLetter(it)}
 
         binding.rvHirakata.layoutManager = GridLayoutManager(this, 5)
         binding.rvHirakata.adapter = hirakataAdapter
@@ -81,5 +87,32 @@ class LetterActivity : AppCompatActivity() {
         const val LETTER_TYPE = "LETTER_TYPE"
         const val HIRAGANA = "HIRAGANA"
         const val KATAKANA = "KATAKANA"
+    }
+
+    // Fungsi untuk memutar suara TTS
+    private fun speakLetter(hiraganaKatakanaItem: HiraganaKatakanaItem) {
+        val text = hiraganaKatakanaItem.letter
+        if (text.isNotEmpty()) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.JAPANESE) // Atur bahasa ke Jepang
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Toast.makeText(this, "Bahasa tidak didukung", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "Inisialisasi TextToSpeech gagal", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onDestroy() {
+        if (tts != null) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }
