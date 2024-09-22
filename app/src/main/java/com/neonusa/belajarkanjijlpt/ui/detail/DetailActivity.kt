@@ -34,11 +34,13 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var currentPage = 0
     private val itemsPerPage = 9
 
+    private lateinit var jlptLevel: String
     private lateinit var kanjiItems: List<KanjiItem>
+    private lateinit var kanjiFilteredByLevel: List<KanjiItem>
+
     private lateinit var kanjiSubitems: List<KanjiSubitem>
 
     private lateinit var tts: TextToSpeech
-    private lateinit var jlptLevel: String
 
     private var jsonString: String? = null
     private var jsonStringKanjiSubitem: String? = null
@@ -51,10 +53,14 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         loadAds()
 
+        jlptLevel = intent.getStringExtra(JLPT_LEVEL)!!
+
         jsonString = loadJSONFromAssets("kanji_items.json", this)
+
         // Parse JSON to list
         val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
         kanjiItems = Gson().fromJson(jsonString, kanjiListType)
+        kanjiFilteredByLevel = kanjiItems.filter { it.level!! == jlptLevel }
 
         jsonStringKanjiSubitem = loadJSONFromAssets("kanji_subitems.json", this)
         // Parse JSON to list
@@ -73,12 +79,12 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         binding.nextButton.setOnClickListener {
-            if ((currentPage + 1) * itemsPerPage < kanjiItems.size) {
+            if ((currentPage + 1) * itemsPerPage < kanjiFilteredByLevel.size) {
                 currentPage++
 
                 val start = currentPage * itemsPerPage
-                val end = minOf(start + itemsPerPage, kanjiItems.size)
-                val pageData = kanjiItems.subList(start, end)
+                val end = minOf(start + itemsPerPage, kanjiFilteredByLevel.size)
+                val pageData = kanjiFilteredByLevel.subList(start, end)
                 loadKanjiData()
                 showSubItems(pageData.first())
             }
@@ -86,7 +92,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
         loadKanjiData()
-        showSubItems(kanjiItems.first())
+        showSubItems(kanjiFilteredByLevel.first())
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -99,8 +105,8 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         if (jsonString != null) {
 //            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
-                val end = minOf(start + itemsPerPage, kanjiItems.size)
-            val pageData = kanjiItems.subList(start, end)
+                val end = minOf(start + itemsPerPage, kanjiFilteredByLevel.size)
+            val pageData = kanjiFilteredByLevel.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
                 // when item clicked
                 showSubItems(it)
@@ -154,5 +160,9 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tts.shutdown()
         }
         super.onDestroy()
+    }
+
+    companion object {
+        const val JLPT_LEVEL = "JLPT_LEVEL"
     }
 }

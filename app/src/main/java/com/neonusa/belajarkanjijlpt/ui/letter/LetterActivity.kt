@@ -78,12 +78,6 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         return super.onSupportNavigateUp()
     }
 
-    companion object {
-        const val LETTER_TYPE = "LETTER_TYPE"
-        const val HIRAGANA = "HIRAGANA"
-        const val KATAKANA = "KATAKANA"
-    }
-
     // Fungsi untuk memutar suara TTS
     private fun speakLetter(hiraganaKatakanaItem: HiraganaKatakanaItem) {
         val text = hiraganaKatakanaItem.letter
@@ -109,5 +103,11 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tts.shutdown()
         }
         super.onDestroy()
+    }
+
+    companion object {
+        const val LETTER_TYPE = "LETTER_TYPE"
+        const val HIRAGANA = "HIRAGANA"
+        const val KATAKANA = "KATAKANA"
     }
 }

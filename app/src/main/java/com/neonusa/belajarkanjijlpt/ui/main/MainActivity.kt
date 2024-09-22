@@ -66,7 +66,9 @@ class MainActivity : AppCompatActivity() {
 //        supportActionBar!!.title = "Belajar Kanji"
 
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
-            startActivity(Intent(this,DetailActivity::class.java))
+            val intent = Intent(this,DetailActivity::class.java)
+            intent.putExtra(DetailActivity.JLPT_LEVEL,it.level)
+            startActivity(intent)
         }
         binding.rvLevels.layoutManager = GridLayoutManager(this, 5)
         binding.rvLevels.adapter = jlptLevelAdapter
