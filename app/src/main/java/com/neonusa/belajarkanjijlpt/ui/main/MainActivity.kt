@@ -92,6 +92,10 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
+        binding.layoutHiragana.setOnClickListener {
+            val intent = Intent(this, LetterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
