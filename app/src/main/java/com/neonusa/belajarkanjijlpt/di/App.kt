@@ -1,6 +1,7 @@
 package com.neonusa.belajarkanjijlpt.di
 
 import android.app.Application
+import android.util.Log
 import com.chibatching.kotpref.Kotpref
 import com.google.android.gms.ads.MobileAds
 import org.koin.android.ext.koin.androidContext

@@ -2,7 +2,9 @@ package com.neonusa.belajarkanjijlpt.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,10 +26,12 @@ import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
 import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
+import com.neonusa.belajarkanjijlpt.utils.MyPreference
 import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -54,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadAds()
+
+        languageSetup()
 
 //        setSupportActionBar(binding.toolbar)
 //        supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -118,5 +124,16 @@ class MainActivity : AppCompatActivity() {
         // Request
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
+    }
+
+    private fun languageSetup(){
+        val defaultLocale = Locale.getDefault()
+        if(MyPreference.lang == "default"){
+            if(defaultLocale.language.equals("in")){
+                MyPreference.lang = "in"
+            } else {
+                MyPreference.lang = "en"
+            }
+        }
     }
 }

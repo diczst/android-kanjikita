@@ -4,16 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.HiraganaKatakanaAdapter
 import com.neonusa.belajarkanjijlpt.data.model.HiraganaKatakanaItem
 import com.neonusa.belajarkanjijlpt.databinding.ActivityLetterBinding
-import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.utils.hiraganaCombinationGenerator
 import com.neonusa.belajarkanjijlpt.utils.hiraganaDakuonGenerator
 import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
@@ -40,7 +35,7 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLetterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        tts = TextToSpeech(this, this) // Inisialisasi TTS
+        tts = TextToSpeech(this, this)
 
         letterType = intent.getStringExtra(LETTER_TYPE)!!
 

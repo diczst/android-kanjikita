@@ -29,13 +29,26 @@ class GridAdapter(private val items: List<KanjiItem>,
         val kanjiItem = items[position]
         holder.kanjiTextView.text = kanjiItem.kanji
 
-        if(MyPreference.lang.equals("id")){
+        if(MyPreference.lang.equals("in")){
             holder.meanTextView.text = kanjiItem.mean_id
         } else {
             holder.meanTextView.text = kanjiItem.mean_en
         }
 
         holder.itemView.setOnClickListener {
+            it.animate()
+                .scaleX(1.1f)  // Perbesar skala X
+                .scaleY(1.1f)  // Perbesar skala Y
+                .setDuration(100)  // Durasi animasi
+                .withEndAction {
+                    // Kembalikan ke ukuran semula
+                    it.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+                }
+                .start()
             onItemClick(kanjiItem)
         }
     }
