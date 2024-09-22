@@ -222,6 +222,7 @@
                     android:layout_weight="1">
 
                     <LinearLayout
+                        android:id="@+id/layout_katakana"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"

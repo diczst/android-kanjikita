@@ -94,6 +94,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.layoutHiragana.setOnClickListener {
             val intent = Intent(this, LetterActivity::class.java)
+            intent.putExtra(LetterActivity.LETTER_TYPE, LetterActivity.HIRAGANA)
+            startActivity(intent)
+        }
+
+        binding.layoutKatakana.setOnClickListener {
+            val intent = Intent(this, LetterActivity::class.java)
+            intent.putExtra(LetterActivity.LETTER_TYPE, LetterActivity.KATAKANA)
             startActivity(intent)
         }
     }
