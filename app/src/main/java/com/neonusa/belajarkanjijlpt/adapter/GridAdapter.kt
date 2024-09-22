@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
+import com.neonusa.belajarkanjijlpt.utils.MyPreference
 
 class GridAdapter(private val items: List<KanjiItem>,
                   private val onItemClick: (KanjiItem) -> Unit) :
@@ -27,7 +28,13 @@ class GridAdapter(private val items: List<KanjiItem>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val kanjiItem = items[position]
         holder.kanjiTextView.text = kanjiItem.kanji
-        holder.meanTextView.text = kanjiItem.mean
+
+        if(MyPreference.lang.equals("id")){
+            holder.meanTextView.text = kanjiItem.mean_id
+        } else {
+            holder.meanTextView.text = kanjiItem.mean_en
+        }
+
         holder.itemView.setOnClickListener {
             onItemClick(kanjiItem)
         }

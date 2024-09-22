@@ -1,92 +1,555 @@
 [
-    {
-      "id": 1,
-      "kanji": "日",
-      "mean": "Matahari"
-    },
-    {
-      "id": 2,
-      "kanji": "月",
-      "mean": "Bulan"
-    },
-    {
-      "id": 3,
-      "kanji": "山",
-      "mean": "Gunung"
-    },
-    {
-      "id": 4,
-      "kanji": "川",
-      "mean": "Sungai"
-    },
-    {
-      "id": 5,
-      "kanji": "田",
-      "mean": "Sawah"
-    },
-    {
-      "id": 6,
-      "kanji": "人",
-      "mean": "Orang"
-    },
-    {
-      "id": 7,
-      "kanji": "火",
-      "mean": "Api"
-    },
-    {
-      "id": 8,
-      "kanji": "水",
-      "mean": "Air"
-    },
-    {
-      "id": 9,
-      "kanji": "木",
-      "mean": "Pohon"
-    },
-    {
-      "id": 10,
-      "kanji": "金",
-      "mean": "Emas"
-    },
-    {
-      "id": 11,
-      "kanji": "土",
-      "mean": "Tanah"
-    },
-    {
-      "id": 12,
-      "kanji": "空",
-      "mean": "Langit"
-    },
-    {
-      "id": 13,
-      "kanji": "風",
-      "mean": "Angin"
-    },
-    {
-      "id": 14,
-      "kanji": "花",
-      "mean": "Bunga"
-    },
-    {
-      "id": 15,
-      "kanji": "車",
-      "mean": "Mobil"
-    },
-    {
-      "id": 16,
-      "kanji": "電",
-      "mean": "Listrik"
-    },
-    {
-      "id": 17,
-      "kanji": "雨",
-      "mean": "Hujan"
-    },
-    {
-      "id": 18,
-      "kanji": "魚",
-      "mean": "Ikan"
-    }
+  {
+    "id": 1,
+    "kanji": "日",
+    "mean_id": "hari",
+    "mean_en": "day",
+    "level": "N5"
+  },
+  {
+    "id": 2,
+    "kanji": "一",
+    "mean_id": "satu",
+    "mean_en": "one",
+    "level": "N5"
+  },
+  {
+    "id": 3,
+    "kanji": "国",
+    "mean_id": "negara",
+    "mean_en": "country",
+    "level": "N5"
+  },
+  {
+    "id": 4,
+    "kanji": "人",
+    "mean_id": "orang",
+    "mean_en": "person",
+    "level": "N5"
+  },
+  {
+    "id": 5,
+    "kanji": "年",
+    "mean_id": "tahun",
+    "mean_en": "year",
+    "level": "N5"
+  },
+  {
+    "id": 6,
+    "kanji": "大",
+    "mean_id": "besar",
+    "mean_en": "big",
+    "level": "N5"
+  },
+  {
+    "id": 7,
+    "kanji": "十",
+    "mean_id": "sepuluh",
+    "mean_en": "ten",
+    "level": "N5"
+  },
+  {
+    "id": 8,
+    "kanji": "二",
+    "mean_id": "dua",
+    "mean_en": "two",
+    "level": "N5"
+  },
+  {
+    "id": 9,
+    "kanji": "本",
+    "mean_id": "buku",
+    "mean_en": "book",
+    "level": "N5"
+  },
+  {
+    "id": 10,
+    "kanji": "中",
+    "mean_id": "di",
+    "mean_en": "in",
+    "level": "N5"
+  },
+  {
+    "id": 11,
+    "kanji": "長",
+    "mean_id": "panjang",
+    "mean_en": "long",
+    "level": "N5"
+  },
+  {
+    "id": 12,
+    "kanji": "出",
+    "mean_id": "KELUAR",
+    "mean_en": "exit",
+    "level": "N5"
+  },
+  {
+    "id": 13,
+    "kanji": "三",
+    "mean_id": "tiga",
+    "mean_en": "three",
+    "level": "N5"
+  },
+  {
+    "id": 14,
+    "kanji": "時",
+    "mean_id": "waktu",
+    "mean_en": "time",
+    "level": "N5"
+  },
+  {
+    "id": 15,
+    "kanji": "行",
+    "mean_id": "pergi",
+    "mean_en": "go",
+    "level": "N5"
+  },
+  {
+    "id": 16,
+    "kanji": "見",
+    "mean_id": "melihat",
+    "mean_en": "see",
+    "level": "N5"
+  },
+  {
+    "id": 17,
+    "kanji": "月",
+    "mean_id": "bulan",
+    "mean_en": "month",
+    "level": "N5"
+  },
+  {
+    "id": 18,
+    "kanji": "後",
+    "mean_id": "di belakang",
+    "mean_en": "behind",
+    "level": "N5"
+  },
+  {
+    "id": 19,
+    "kanji": "前",
+    "mean_id": "di depan",
+    "mean_en": "in front",
+    "level": "N5"
+  },
+  {
+    "id": 20,
+    "kanji": "生",
+    "mean_id": "kehidupan",
+    "mean_en": "life",
+    "level": "N5"
+  },
+  {
+    "id": 21,
+    "kanji": "五",
+    "mean_id": "lima",
+    "mean_en": "five",
+    "level": "N5"
+  },
+  {
+    "id": 22,
+    "kanji": "間",
+    "mean_id": "selang",
+    "mean_en": "interval",
+    "level": "N5"
+  },
+  {
+    "id": 23,
+    "kanji": "上",
+    "mean_id": "di atas",
+    "mean_en": "above",
+    "level": "N5"
+  },
+  {
+    "id": 24,
+    "kanji": "東",
+    "mean_id": "timur",
+    "mean_en": "east",
+    "level": "N5"
+  },
+  {
+    "id": 25,
+    "kanji": "四",
+    "mean_id": "empat",
+    "mean_en": "four",
+    "level": "N5"
+  },
+  {
+    "id": 26,
+    "kanji": "今",
+    "mean_id": "sekarang",
+    "mean_en": "now",
+    "level": "N5"
+  },
+  {
+    "id": 27,
+    "kanji": "金",
+    "mean_id": "emas",
+    "mean_en": "gold",
+    "level": "N5"
+  },
+  {
+    "id": 28,
+    "kanji": "九",
+    "mean_id": "sembilan",
+    "mean_en": "nine",
+    "level": "N5"
+  },
+  {
+    "id": 29,
+    "kanji": "入",
+    "mean_id": "memasuki",
+    "mean_en": "enter",
+    "level": "N5"
+  },
+  {
+    "id": 30,
+    "kanji": "学",
+    "mean_id": "belajar",
+    "mean_en": "study",
+    "level": "N5"
+  },
+  {
+    "id": 31,
+    "kanji": "高",
+    "mean_id": "tinggi",
+    "mean_en": "high",
+    "level": "N5"
+  },
+  {
+    "id": 32,
+    "kanji": "円",
+    "mean_id": "lingkaran",
+    "mean_en": "circle",
+    "level": "N5"
+  },
+  {
+    "id": 33,
+    "kanji": "子",
+    "mean_id": "anak",
+    "mean_en": "child",
+    "level": "N5"
+  },
+  {
+    "id": 34,
+    "kanji": "外",
+    "mean_id": "di luar",
+    "mean_en": "outside",
+    "level": "N5"
+  },
+  {
+    "id": 35,
+    "kanji": "八",
+    "mean_id": "delapan",
+    "mean_en": "eight",
+    "level": "N5"
+  },
+  {
+    "id": 36,
+    "kanji": "六",
+    "mean_id": "enam",
+    "mean_en": "six",
+    "level": "N5"
+  },
+  {
+    "id": 37,
+    "kanji": "下",
+    "mean_id": "di bawah",
+    "mean_en": "below",
+    "level": "N5"
+  },
+  {
+    "id": 38,
+    "kanji": "来",
+    "mean_id": "datang",
+    "mean_en": "come",
+    "level": "N5"
+  },
+  {
+    "id": 39,
+    "kanji": "気",
+    "mean_id": "Roh",
+    "mean_en": "spirit",
+    "level": "N5"
+  },
+  {
+    "id": 40,
+    "kanji": "小",
+    "mean_id": "kecil",
+    "mean_en": "small",
+    "level": "N5"
+  },
+  {
+    "id": 41,
+    "kanji": "七",
+    "mean_id": "tujuh",
+    "mean_en": "seven",
+    "level": "N5"
+  },
+  {
+    "id": 42,
+    "kanji": "山",
+    "mean_id": "gunung",
+    "mean_en": "mountain",
+    "level": "N5"
+  },
+  {
+    "id": 43,
+    "kanji": "話",
+    "mean_id": "kisah",
+    "mean_en": "story",
+    "level": "N5"
+  },
+  {
+    "id": 44,
+    "kanji": "女",
+    "mean_id": "wanita",
+    "mean_en": "woman",
+    "level": "N5"
+  },
+  {
+    "id": 45,
+    "kanji": "北",
+    "mean_id": "utara",
+    "mean_en": "north",
+    "level": "N5"
+  },
+  {
+    "id": 46,
+    "kanji": "午",
+    "mean_id": "siang",
+    "mean_en": "noon",
+    "level": "N5"
+  },
+  {
+    "id": 47,
+    "kanji": "百",
+    "mean_id": "ratus",
+    "mean_en": "hundred",
+    "level": "N5"
+  },
+  {
+    "id": 48,
+    "kanji": "書",
+    "mean_id": "menulis",
+    "mean_en": "write",
+    "level": "N5"
+  },
+  {
+    "id": 49,
+    "kanji": "先",
+    "mean_id": "sebelum",
+    "mean_en": "before",
+    "level": "N5"
+  },
+  {
+    "id": 50,
+    "kanji": "名",
+    "mean_id": "nama",
+    "mean_en": "name",
+    "level": "N5"
+  },
+  {
+    "id": 51,
+    "kanji": "川",
+    "mean_id": "sungai kecil",
+    "mean_en": "small river",
+    "level": "N5"
+  },
+  {
+    "id": 52,
+    "kanji": "千",
+    "mean_id": "ribu",
+    "mean_en": "thousand",
+    "level": "N5"
+  },
+  {
+    "id": 53,
+    "kanji": "水",
+    "mean_id": "air",
+    "mean_en": "water",
+    "level": "N5"
+  },
+  {
+    "id": 54,
+    "kanji": "半",
+    "mean_id": "setengah",
+    "mean_en": "half",
+    "level": "N5"
+  },
+  {
+    "id": 55,
+    "kanji": "男",
+    "mean_id": "pria",
+    "mean_en": "man",
+    "level": "N5"
+  },
+  {
+    "id": 56,
+    "kanji": "西",
+    "mean_id": "Barat",
+    "mean_en": "west",
+    "level": "N5"
+  },
+  {
+    "id": 57,
+    "kanji": "電",
+    "mean_id": "listrik",
+    "mean_en": "electricity",
+    "level": "N5"
+  },
+  {
+    "id": 58,
+    "kanji": "校",
+    "mean_id": "ujian",
+    "mean_en": "exam",
+    "level": "N5"
+  },
+  {
+    "id": 59,
+    "kanji": "語",
+    "mean_id": "kata",
+    "mean_en": "word",
+    "level": "N5"
+  },
+  {
+    "id": 60,
+    "kanji": "土",
+    "mean_id": "tanah",
+    "mean_en": "earth",
+    "level": "N5"
+  },
+  {
+    "id": 61,
+    "kanji": "木",
+    "mean_id": "pohon",
+    "mean_en": "tree",
+    "level": "N5"
+  },
+  {
+    "id": 62,
+    "kanji": "聞",
+    "mean_id": "mendengar",
+    "mean_en": "hear",
+    "level": "N5"
+  },
+  {
+    "id": 63,
+    "kanji": "食",
+    "mean_id": "makan",
+    "mean_en": "eat",
+    "level": "N5"
+  },
+  {
+    "id": 64,
+    "kanji": "車",
+    "mean_id": "mobil",
+    "mean_en": "car",
+    "level": "N5"
+  },
+  {
+    "id": 65,
+    "kanji": "何",
+    "mean_id": "Apa",
+    "mean_en": "what",
+    "level": "N5"
+  },
+  {
+    "id": 66,
+    "kanji": "南",
+    "mean_id": "Selatan",
+    "mean_en": "south",
+    "level": "N5"
+  },
+  {
+    "id": 67,
+    "kanji": "万",
+    "mean_id": "sepuluh ribu",
+    "mean_en": "ten thousand",
+    "level": "N5"
+  },
+  {
+    "id": 68,
+    "kanji": "毎",
+    "mean_id": "setiap",
+    "mean_en": "every",
+    "level": "N5"
+  },
+  {
+    "id": 69,
+    "kanji": "白",
+    "mean_id": "putih",
+    "mean_en": "white",
+    "level": "N5"
+  },
+  {
+    "id": 70,
+    "kanji": "天",
+    "mean_id": "surga",
+    "mean_en": "heaven",
+    "level": "N5"
+  },
+  {
+    "id": 71,
+    "kanji": "母",
+    "mean_id": "ibu",
+    "mean_en": "mother",
+    "level": "N5"
+  },
+  {
+    "id": 72,
+    "kanji": "火",
+    "mean_id": "api",
+    "mean_en": "fire",
+    "level": "N5"
+  },
+  {
+    "id": 73,
+    "kanji": "右",
+    "mean_id": "kanan",
+    "mean_en": "right",
+    "level": "N5"
+  },
+  {
+    "id": 74,
+    "kanji": "読",
+    "mean_id": "Baca",
+    "mean_en": "read",
+    "level": "N5"
+  },
+  {
+    "id": 75,
+    "kanji": "友",
+    "mean_id": "teman",
+    "mean_en": "friend",
+    "level": "N5"
+  },
+  {
+    "id": 76,
+    "kanji": "左",
+    "mean_id": "kiri",
+    "mean_en": "left",
+    "level": "N5"
+  },
+  {
+    "id": 77,
+    "kanji": "休",
+    "mean_id": "istirahat",
+    "mean_en": "rest",
+    "level": "N5"
+  },
+  {
+    "id": 78,
+    "kanji": "父",
+    "mean_id": "ayah",
+    "mean_en": "father",
+    "level": "N5"
+  },
+  {
+    "id": 79,
+    "kanji": "雨",
+    "mean_id": "hujan",
+    "mean_en": "rain",
+    "level": "N5"
+  }
 ]
