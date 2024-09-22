@@ -60,6 +60,76 @@ fun hiraganaGenerator(): List<HiraganaKatakanaItem> {
     return hiraganaData
 }
 
+fun hiraganaDakuonGenerator(): List<HiraganaKatakanaItem> {
+    val hiraganaDakuonData = listOf(
+        HiraganaKatakanaItem("が", "ga"),
+        HiraganaKatakanaItem("ぎ", "gi"),
+        HiraganaKatakanaItem("ぐ", "gu"),
+        HiraganaKatakanaItem("げ", "ge"),
+        HiraganaKatakanaItem("ご", "go"),
+        HiraganaKatakanaItem("ざ", "za"),
+        HiraganaKatakanaItem("じ", "ji"),
+        HiraganaKatakanaItem("ず", "zu"),
+        HiraganaKatakanaItem("ぜ", "ze"),
+        HiraganaKatakanaItem("ぞ", "zo"),
+        HiraganaKatakanaItem("だ", "da"),
+        HiraganaKatakanaItem("ぢ", "ji"),
+        HiraganaKatakanaItem("づ", "zu"),
+        HiraganaKatakanaItem("で", "de"),
+        HiraganaKatakanaItem("ど", "do"),
+        HiraganaKatakanaItem("ば", "ba"),
+        HiraganaKatakanaItem("び", "bi"),
+        HiraganaKatakanaItem("ぶ", "bu"),
+        HiraganaKatakanaItem("べ", "be"),
+        HiraganaKatakanaItem("ぼ", "bo"),
+        HiraganaKatakanaItem("ぱ", "pa"),
+        HiraganaKatakanaItem("ぴ", "pi"),
+        HiraganaKatakanaItem("ぷ", "pu"),
+        HiraganaKatakanaItem("ぺ", "pe"),
+        HiraganaKatakanaItem("ぽ", "po")
+    )
+    return hiraganaDakuonData
+}
+
+fun hiraganaCombinationGenerator(): List<HiraganaKatakanaItem> {
+    val hiraganaCombinations = listOf(
+        HiraganaKatakanaItem("きゃ", "kya"),
+        HiraganaKatakanaItem("きゅ", "kyu"),
+        HiraganaKatakanaItem("きょ", "kyo"),
+        HiraganaKatakanaItem("ぎゃ", "gya"),
+        HiraganaKatakanaItem("ぎゅ", "gyu"),
+        HiraganaKatakanaItem("ぎょ", "gyo"),
+        HiraganaKatakanaItem("しゃ", "sha"),
+        HiraganaKatakanaItem("しゅ", "shu"),
+        HiraganaKatakanaItem("しょ", "sho"),
+        HiraganaKatakanaItem("じゃ", "ja"),
+        HiraganaKatakanaItem("じゅ", "ju"),
+        HiraganaKatakanaItem("じょ", "jo"),
+        HiraganaKatakanaItem("ちゃ", "cha"),
+        HiraganaKatakanaItem("ちゅ", "chu"),
+        HiraganaKatakanaItem("ちょ", "cho"),
+        HiraganaKatakanaItem("にゃ", "nya"),
+        HiraganaKatakanaItem("にゅ", "nyu"),
+        HiraganaKatakanaItem("にょ", "nyo"),
+        HiraganaKatakanaItem("ひゃ", "hya"),
+        HiraganaKatakanaItem("ひゅ", "hyu"),
+        HiraganaKatakanaItem("ひょ", "hyo"),
+        HiraganaKatakanaItem("びゃ", "bya"),
+        HiraganaKatakanaItem("びゅ", "byu"),
+        HiraganaKatakanaItem("びょ", "byo"),
+        HiraganaKatakanaItem("ぴゃ", "pya"),
+        HiraganaKatakanaItem("ぴゅ", "pyu"),
+        HiraganaKatakanaItem("ぴょ", "pyo"),
+        HiraganaKatakanaItem("みゃ", "mya"),
+        HiraganaKatakanaItem("みゅ", "myu"),
+        HiraganaKatakanaItem("みょ", "myo"),
+        HiraganaKatakanaItem("りゃ", "rya"),
+        HiraganaKatakanaItem("りゅ", "ryu"),
+        HiraganaKatakanaItem("りょ", "ryo")
+    )
+    return hiraganaCombinations
+}
+
 fun katakanaGenerator(): List<HiraganaKatakanaItem> {
     val katakanaData = listOf(
         HiraganaKatakanaItem("ア", "a"),
@@ -115,6 +185,78 @@ fun katakanaGenerator(): List<HiraganaKatakanaItem> {
     )
     return katakanaData
 }
+
+fun katakanaDakuonGenerator(): List<HiraganaKatakanaItem> {
+    val katakanaDakuonData = listOf(
+        HiraganaKatakanaItem("ガ", "ga"),
+        HiraganaKatakanaItem("ギ", "gi"),
+        HiraganaKatakanaItem("グ", "gu"),
+        HiraganaKatakanaItem("ゲ", "ge"),
+        HiraganaKatakanaItem("ゴ", "go"),
+        HiraganaKatakanaItem("ザ", "za"),
+        HiraganaKatakanaItem("ジ", "ji"),
+        HiraganaKatakanaItem("ズ", "zu"),
+        HiraganaKatakanaItem("ゼ", "ze"),
+        HiraganaKatakanaItem("ゾ", "zo"),
+        HiraganaKatakanaItem("ダ", "da"),
+        HiraganaKatakanaItem("ヂ", "ji"),
+        HiraganaKatakanaItem("ヅ", "zu"),
+        HiraganaKatakanaItem("デ", "de"),
+        HiraganaKatakanaItem("ド", "do"),
+        HiraganaKatakanaItem("バ", "ba"),
+        HiraganaKatakanaItem("ビ", "bi"),
+        HiraganaKatakanaItem("ブ", "bu"),
+        HiraganaKatakanaItem("ベ", "be"),
+        HiraganaKatakanaItem("ボ", "bo"),
+        HiraganaKatakanaItem("パ", "pa"),
+        HiraganaKatakanaItem("ピ", "pi"),
+        HiraganaKatakanaItem("プ", "pu"),
+        HiraganaKatakanaItem("ペ", "pe"),
+        HiraganaKatakanaItem("ポ", "po")
+    )
+    return katakanaDakuonData
+}
+
+fun katakanaCombinationGenerator(): List<HiraganaKatakanaItem> {
+    val katakanaCombinations = listOf(
+        HiraganaKatakanaItem("キャ", "kya"),
+        HiraganaKatakanaItem("キュ", "kyu"),
+        HiraganaKatakanaItem("キョ", "kyo"),
+        HiraganaKatakanaItem("ギャ", "gya"),
+        HiraganaKatakanaItem("ギュ", "gyu"),
+        HiraganaKatakanaItem("ギョ", "gyo"),
+        HiraganaKatakanaItem("シャ", "sha"),
+        HiraganaKatakanaItem("シュ", "shu"),
+        HiraganaKatakanaItem("ショ", "sho"),
+        HiraganaKatakanaItem("ジャ", "ja"),
+        HiraganaKatakanaItem("ジュ", "ju"),
+        HiraganaKatakanaItem("ジョ", "jo"),
+        HiraganaKatakanaItem("チャ", "cha"),
+        HiraganaKatakanaItem("チュ", "chu"),
+        HiraganaKatakanaItem("チョ", "cho"),
+        HiraganaKatakanaItem("ニャ", "nya"),
+        HiraganaKatakanaItem("ニュ", "nyu"),
+        HiraganaKatakanaItem("ニョ", "nyo"),
+        HiraganaKatakanaItem("ヒャ", "hya"),
+        HiraganaKatakanaItem("ヒュ", "hyu"),
+        HiraganaKatakanaItem("ヒョ", "hyo"),
+        HiraganaKatakanaItem("ビャ", "bya"),
+        HiraganaKatakanaItem("ビュ", "byu"),
+        HiraganaKatakanaItem("ビョ", "byo"),
+        HiraganaKatakanaItem("ピャ", "pya"),
+        HiraganaKatakanaItem("ピュ", "pyu"),
+        HiraganaKatakanaItem("ピョ", "pyo"),
+        HiraganaKatakanaItem("ミャ", "mya"),
+        HiraganaKatakanaItem("ミュ", "myu"),
+        HiraganaKatakanaItem("ミョ", "myo"),
+        HiraganaKatakanaItem("リャ", "rya"),
+        HiraganaKatakanaItem("リュ", "ryu"),
+        HiraganaKatakanaItem("リョ", "ryo")
+    )
+    return katakanaCombinations
+}
+
+
 
 fun generateDummyKOTD(): List<KanjiSubitem>{
     val subItemData = listOf(

@@ -22,6 +22,8 @@ import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
+import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
+import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
 import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
@@ -53,9 +55,9 @@ class MainActivity : AppCompatActivity() {
 
         loadAds()
 
-        setSupportActionBar(binding.toolbar)
+//        setSupportActionBar(binding.toolbar)
 //        supportActionBar!!.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.title = "Belajar Kanji"
+//        supportActionBar!!.title = "Belajar Kanji"
 
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
             startActivity(Intent(this,DetailActivity::class.java))
@@ -64,17 +66,43 @@ class MainActivity : AppCompatActivity() {
         binding.rvLevels.adapter = jlptLevelAdapter
 
         val hiraganaAdapter = HiraganaKatakanaAdapter(hiraganaItems){}
-        binding.rvHiragana.layoutManager = GridLayoutManager(this, 5)
-        binding.rvHiragana.adapter = hiraganaAdapter
-
-        val katakanaAdapter = HiraganaKatakanaAdapter(katakanaItems){}
-        binding.rvKatakana.layoutManager = GridLayoutManager(this, 5)
-        binding.rvKatakana.adapter = katakanaAdapter
+//        binding.rvHiragana.layoutManager = GridLayoutManager(this, 5)
+//        binding.rvHiragana.adapter = hiraganaAdapter
+//
+//        val katakanaAdapter = HiraganaKatakanaAdapter(katakanaItems){}
+//        binding.rvKatakana.layoutManager = GridLayoutManager(this, 5)
+//        binding.rvKatakana.adapter = katakanaAdapter
 
         val kotdAdapter = SubitemAdapter(kanjiOfTheDayItems)
         binding.rvKotd.layoutManager = LinearLayoutManager(this)
         binding.rvKotd.adapter = kotdAdapter
 
+//        binding.tvLearned.setOnClickListener {
+//            val intent = Intent(this,LearnedActivity::class.java)
+//            startActivity(intent)
+//        }
+
+//        binding.tvHiragana.setOnClickListener {
+//            val intent = Intent(this,LetterActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.tvKatakana.setOnClickListener {
+//            val intent = Intent(this,LetterActivity::class.java)
+//            startActivity(intent)
+//        }
+
+        binding.layoutHiragana.setOnClickListener {
+            val intent = Intent(this, LetterActivity::class.java)
+            intent.putExtra(LetterActivity.LETTER_TYPE, LetterActivity.HIRAGANA)
+            startActivity(intent)
+        }
+
+        binding.layoutKatakana.setOnClickListener {
+            val intent = Intent(this, LetterActivity::class.java)
+            intent.putExtra(LetterActivity.LETTER_TYPE, LetterActivity.KATAKANA)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
