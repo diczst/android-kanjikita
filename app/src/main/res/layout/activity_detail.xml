@@ -76,7 +76,7 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+            android:id="@+id/rv_single_kanji"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
@@ -85,24 +85,26 @@
             tools:spanCount="3"
             tools:itemCount="6"/>
 
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kosakata"
             style="@style/TextAppearance.AppCompat.Title"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="12dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_subitem"
+            android:id="@+id/rv_kanji_words"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:itemCount="2"
-            tools:listitem="@layout/item_kanji_word" />
+            tools:listitem="@layout/item_kanji_word_with_romaji" />
     </LinearLayout>
 
     <RelativeLayout

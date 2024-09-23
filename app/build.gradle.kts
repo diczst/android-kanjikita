@@ -61,13 +61,20 @@ dependencies {
     // Google Admob
     implementation ("com.google.android.gms:play-services-ads:21.1.0")
 
-    // koin
-    implementation ("io.insert-koin:koin-core:2.2.2")
-    implementation ("io.insert-koin:koin-androidx-viewmodel:2.2.2")
+    // Room dependencies
+    implementation ("androidx.room:room-runtime:2.4.3")
+    kapt ("androidx.room:room-compiler:2.4.3")
+    implementation ("androidx.room:room-ktx:2.4.3")
 
-    //room
-    implementation("androidx.room:room-runtime:2.5.0-alpha02")
-    kapt("androidx.room:room-compiler:2.5.0-alpha02")
+    // Viewmodel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.3")
+
+    // Coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    // Koin dependencies
+    implementation ("io.insert-koin:koin-android:3.1.2")
 
     // Google Admob
 //    implementation ("com.google.android.gms:play-services-ads:21.1.0")

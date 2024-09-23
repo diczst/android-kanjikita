@@ -1,13 +1,12 @@
 package com.neonusa.belajarkanjijlpt.ui.detail
 
+import DetailViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
@@ -17,56 +16,46 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.GridAdapter
+import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.adapter.SubitemAdapter
-import com.neonusa.belajarkanjijlpt.data.model.HiraganaKatakanaItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
+import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.databinding.ActivityDetailBinding
-import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
-import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
 class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var adapter: GridAdapter
-    private lateinit var subItemAdapter: SubitemAdapter
+    private lateinit var tts: TextToSpeech
+    private lateinit var jlptLevel: String
+    private val detailViewModel: DetailViewModel by viewModel()
 
+    // KANJI
+    //==============================================================
+    private var jsonKanjiSingleString: String? = null
+    private lateinit var kanjiSingleItems: List<KanjiItem>
+    private lateinit var kanjiSingleItemsFilteredByLevel: List<KanjiItem>
     private var currentPage = 0
     private val itemsPerPage = 9
+    //==============================================================
 
-    private lateinit var jlptLevel: String
-    private lateinit var kanjiItems: List<KanjiItem>
-    private lateinit var kanjiFilteredByLevel: List<KanjiItem>
-
-    private lateinit var kanjiSubitems: List<KanjiSubitem>
-
-    private lateinit var tts: TextToSpeech
-
-    private var jsonString: String? = null
-    private var jsonStringKanjiSubitem: String? = null
+    // KANJI WORDS
+    //==============================================================
+    private var jsonKanjiWordString: String? = null
+    private lateinit var kanjiWordItems: List<KanjiWord>
+    //==============================================================
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        tts = TextToSpeech(this, this)
-
         loadAds()
 
+        tts = TextToSpeech(this, this)
         jlptLevel = intent.getStringExtra(JLPT_LEVEL)!!
-        jsonString = loadJSONFromAssets("kanji_items.json", this)
-
-        // Parse JSON to list
-        val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
-        kanjiItems = Gson().fromJson(jsonString, kanjiListType)
-        kanjiFilteredByLevel = kanjiItems.filter { it.level!! == jlptLevel }
-
-        jsonStringKanjiSubitem = loadJSONFromAssets("kanji_subitems.json", this)
-        // Parse JSON to list
-        val kanjiSubitemListType = object : TypeToken<List<KanjiSubitem>>() {}.type
-        kanjiSubitems = Gson().fromJson(jsonStringKanjiSubitem, kanjiSubitemListType)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -81,20 +70,42 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         binding.nextButton.setOnClickListener {
-            if ((currentPage + 1) * itemsPerPage < kanjiFilteredByLevel.size) {
+            if ((currentPage + 1) * itemsPerPage < kanjiSingleItemsFilteredByLevel.size) {
                 currentPage++
 
                 val start = currentPage * itemsPerPage
-                val end = minOf(start + itemsPerPage, kanjiFilteredByLevel.size)
-                val pageData = kanjiFilteredByLevel.subList(start, end)
+                val end = minOf(start + itemsPerPage, kanjiSingleItemsFilteredByLevel.size)
+                val pageData = kanjiSingleItemsFilteredByLevel.subList(start, end)
                 loadKanjiData()
-                showSubItems(pageData.first())
+//                showSubItems(pageData.first())
             }
         }
 
-        binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
+
+        jsonKanjiSingleString = loadJSONFromAssets("kanji_single.json", this) // Parse JSON string
+        val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
+        kanjiSingleItems = Gson().fromJson(jsonKanjiSingleString, kanjiListType) // Parse string json to list
+        kanjiSingleItemsFilteredByLevel = kanjiSingleItems.filter { it.level!! == jlptLevel } // filter list
+        binding.rvSingleKanji.layoutManager = GridLayoutManager(this, 3)
+
+
+        jsonKanjiWordString = loadJSONFromAssets("kanji_words.json", this)
+        detailViewModel.insertJsonDataToDatabase(jsonKanjiWordString.toString()) // Insert data dari json ke sqlite
+        detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
+            val firstKanji = kanjiSingleItems.first()
+            val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
+                firstKanji.kanji.toString())}
+            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems){
+                // when item clicked
+                speakKanji(kanjiWord = it)
+            }
+            binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
+            binding.rvKanjiWords.adapter = kanjiWordAdapter
+        // Log.d(this::class.simpleName, "onCreate: $kanjiList")
+        }
+
         loadKanjiData()
-        showSubItems(kanjiItems.first())
+//        showSubItems(kanjiItems.first())
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -102,29 +113,44 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         return super.onSupportNavigateUp()
     }
 
+    private fun loadKanjiWordData(kanjiSingle: KanjiItem){
+        detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
+            val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
+                kanjiSingle.kanji.toString())}
+            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems){
+                // when item clicked
+                speakKanji(kanjiWord = it)
+            }
+            binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
+            binding.rvKanjiWords.adapter = kanjiWordAdapter
+            // Log.d(this::class.simpleName, "onCreate: $kanjiList")
+        }
+    }
+
     private fun loadKanjiData(){
         val start = currentPage * itemsPerPage
 
-        if (jsonString != null) {
+        if (jsonKanjiSingleString != null) {
 //            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
-                val end = minOf(start + itemsPerPage, kanjiFilteredByLevel.size)
-            val pageData = kanjiFilteredByLevel.subList(start, end)
+                val end = minOf(start + itemsPerPage, kanjiSingleItemsFilteredByLevel.size)
+            val pageData = kanjiSingleItemsFilteredByLevel.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
                 // when item clicked
-                showSubItems(it)
-                speakKanji(it)
+//                showSubItems(it)
+                speakKanji(kanjiItem = it)
+                loadKanjiWordData(it)
             }
-            binding.recyclerview.adapter = kanjiAdapter
+            binding.rvSingleKanji.adapter = kanjiAdapter
         }
         binding.pageTitle.text = "Halaman ${currentPage + 1}"
     }
 
-    private fun showSubItems(item: KanjiItem){
-        val kotdAdapter = SubitemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
-        binding.recyclerviewSubitem.layoutManager = LinearLayoutManager(this)
-        binding.recyclerviewSubitem.adapter = kotdAdapter
-
-    }
+//    private fun showSubItems(item: KanjiItem){
+//        val kotdAdapter = SubitemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
+//        binding.recyclerviewSubitem.layoutManager = LinearLayoutManager(this)
+//        binding.recyclerviewSubitem.adapter = kotdAdapter
+//
+//    }
 
     private fun loadAds(){
         val adView = AdView(this)
@@ -137,11 +163,19 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     // Fungsi untuk memutar suara TTS
-    private fun speakKanji(kanjiItem: KanjiItem) {
-        val text = kanjiItem.kanji
-        if (text!!.isNotEmpty()) {
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+    private fun speakKanji(kanjiItem: KanjiItem?= null, kanjiWord: KanjiWord?=null) {
+        if(kanjiItem != null){
+            val text = kanjiItem.kanji
+            if (text!!.isNotEmpty()) {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+            }
+        } else {
+            val text = kanjiWord?.furigana
+            if (text!!.isNotEmpty()) {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+            }
         }
+
     }
 
     override fun onInit(status: Int) {
