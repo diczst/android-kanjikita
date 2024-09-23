@@ -41,7 +41,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     // KANJI WORDS
     //==============================================================
     private var jsonKanjiWordString: String? = null
-    private lateinit var kanjiWordItems: List<KanjiWord>
     //==============================================================
 
     @SuppressLint("SetTextI18n")
@@ -92,10 +91,9 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val firstKanji = kanjiSingleItemsFilteredByLevel.first()
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 firstKanji.kanji.toString())}
-            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems){
-                // when item clicked
-                speakKanji(kanjiWord = it)
-            }
+            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems,
+                onItemClick = {speakKanji(kanjiWord = it)},
+                onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)})
             binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
             binding.rvKanjiWords.adapter = kanjiWordAdapter
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
@@ -114,10 +112,9 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 kanjiSingle.kanji.toString())}
-            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems){
-                // when item clicked
-                speakKanji(kanjiWord = it)
-            }
+            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems,
+                onItemClick = {speakKanji(kanjiWord = it)},
+                onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)})
             binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
             binding.rvKanjiWords.adapter = kanjiWordAdapter
             // Log.d(this::class.simpleName, "onCreate: $kanjiList")

@@ -32,6 +32,13 @@ class DetailViewModel : ViewModel(), KoinComponent {
         }
     }
 
+    // Update bookmark status
+    fun updateBookmarkStatus(kanjiId: Int, isChecked: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            kanjiDao.updateCheckedStatus(kanjiId, isChecked)
+        }
+    }
+
     // Fungsi helper untuk parsing JSON (implementasikan sesuai kebutuhan Anda)
     private fun parseJsonToKanjiList(jsonString: String): List<KanjiWord> {
         return try {

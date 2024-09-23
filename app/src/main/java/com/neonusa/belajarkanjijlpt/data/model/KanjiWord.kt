@@ -10,5 +10,6 @@ data class KanjiWord(
     val furigana: String,
     val romaji: String,
     val mean_id: String,
-    val mean_en: String
+    val mean_en: String,
+    var is_checked: Boolean = false // Default value untuk bookmark
 )

@@ -74,6 +74,7 @@
 <!--                android:src="@drawable/baseline_volume_up_gray_24" />-->
 
             <ImageView
+                android:id="@+id/icon_checked"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/baseline_check_circle_outline_gray_24" />
