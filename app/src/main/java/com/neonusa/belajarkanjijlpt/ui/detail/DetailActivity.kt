@@ -4,7 +4,6 @@ import DetailViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,9 +16,7 @@ import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.GridAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
-import com.neonusa.belajarkanjijlpt.adapter.SubitemAdapter
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
-import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.databinding.ActivityDetailBinding
 import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets

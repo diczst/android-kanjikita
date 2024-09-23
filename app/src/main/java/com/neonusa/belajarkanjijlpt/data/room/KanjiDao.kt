@@ -9,7 +9,7 @@ import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 
 @Dao
 interface KanjiDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(kanjis: List<KanjiWord>)
 
     @Query("SELECT * FROM kanji_table")
