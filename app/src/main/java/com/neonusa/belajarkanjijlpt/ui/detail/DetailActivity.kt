@@ -92,7 +92,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         jsonKanjiWordString = loadJSONFromAssets("kanji_words.json", this)
         detailViewModel.insertJsonDataToDatabase(jsonKanjiWordString.toString()) // Insert data dari json ke sqlite
         detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
-            val firstKanji = kanjiSingleItems.first()
+            val firstKanji = kanjiSingleItemsFilteredByLevel.first()
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 firstKanji.kanji.toString())}
             val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems){
