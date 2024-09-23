@@ -1,5 +1,6 @@
 package com.neonusa.belajarkanjijlpt.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
@@ -45,6 +46,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var jsonString: String? = null
     private var jsonStringKanjiSubitem: String? = null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -54,7 +56,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         loadAds()
 
         jlptLevel = intent.getStringExtra(JLPT_LEVEL)!!
-
         jsonString = loadJSONFromAssets("kanji_items.json", this)
 
         // Parse JSON to list
@@ -70,6 +71,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.toolbarTitleDetail.text = "JLPT $jlptLevel"
 
         binding.prevButton.setOnClickListener {
             if (currentPage > 0) {
@@ -92,7 +94,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         binding.recyclerview.layoutManager = GridLayoutManager(this, 3)
         loadKanjiData()
-        showSubItems(kanjiFilteredByLevel.first())
+        showSubItems(kanjiItems.first())
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -119,7 +121,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun showSubItems(item: KanjiItem){
         val kotdAdapter = SubitemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
-
         binding.recyclerviewSubitem.layoutManager = LinearLayoutManager(this)
         binding.recyclerviewSubitem.adapter = kotdAdapter
 
