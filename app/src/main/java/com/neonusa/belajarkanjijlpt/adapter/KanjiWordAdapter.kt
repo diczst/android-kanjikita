@@ -47,9 +47,9 @@ class KanjiWordAdapter(private val data: List<KanjiWord>,
         }
 
         if(kanjiWord.is_checked){
-            holder.checkedIcon.setBackgroundResource(R.drawable.baseline_checked_circle_24)
+            holder.checkedIcon.setImageResource(R.drawable.baseline_checked_circle_24)
         } else {
-            holder.checkedIcon.setBackgroundResource(R.drawable.baseline_check_circle_outline_gray_24)
+            holder.checkedIcon.setImageResource(R.drawable.baseline_check_circle_outline_gray_24)
         }
 
         // Handle klik pada checkedIcon
