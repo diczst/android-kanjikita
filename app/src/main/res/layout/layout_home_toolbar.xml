@@ -48,19 +48,7 @@
         android:layout_centerVertical="true"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:src="@drawable/baseline_language_white_24"
-            app:tint="@color/white" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:src="@drawable/baseline_info_24"
-            app:tint="@color/white" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_learned"
