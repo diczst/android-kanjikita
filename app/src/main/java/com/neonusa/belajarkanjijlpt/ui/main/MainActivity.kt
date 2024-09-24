@@ -94,8 +94,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             })
         binding.rvKotd.adapter = kanjiWordOfTheDayAdapter
 
-        val kanjiIds = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // ID KANJI UNTU KOTD
-        mainViewModel.getKanjisByIds(kanjiIds).observe(this) { kanjiList ->
+//        val kanjiIds = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // ID KANJI UNTU KOTD
+//        mainViewModel.getKanjisByIds(kanjiIds).observe(this) { kanjiList ->
+//            kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
+//        }
+
+        mainViewModel.getRandomKanjisOfTheDay { kanjiList->
             kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
         }
 
@@ -162,9 +166,5 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tts.shutdown()
         }
         super.onDestroy()
-    }
-
-    companion object {
-        const val JLPT_LEVEL = "JLPT_LEVEL"
     }
 }
