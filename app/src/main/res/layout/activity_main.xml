@@ -151,7 +151,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kanji of the day"
+                            android:text="@string/kanji_hari_ini"
                             style="@style/TextAppearance.AppCompat.Title"
                             android:textSize="13sp" />
 

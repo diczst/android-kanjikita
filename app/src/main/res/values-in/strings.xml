@@ -16,4 +16,5 @@
     <string name="kanji_dipelajari_2">Kanji Dipelajari</string>
     <string name="belum_ada_data">Belum Ada Data</string>
     <string name="mulai_belajar_sekarang">Mulai belajar sekarang dan data Anda akan muncul di sini setelah mempelajari beberapa kanji.</string>
+    <string name="kanji_hari_ini">Kanji Hari Ini</string>
 </resources>
