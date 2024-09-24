@@ -14,8 +14,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class DetailViewModel : ViewModel(), KoinComponent {
-
-
     private val kanjiDao: KanjiDao by inject()
 
     // LiveData untuk menyimpan hasil dari database

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -100,7 +101,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 firstKanji.kanji.toString())}
             kanjiWordAdapter.submitList(filteredKanjiWordItems)
-            // binding.rvKanjiWords.adapter = kanjiWordAdapter // jangan set adapter di sini kalau tidak mau terscroll ke atas setiap ada perubahan data, tapi bikin aja submitlist
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
         //==============================================
@@ -120,7 +120,14 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 kanjiSingle.kanji.toString())}
             kanjiWordAdapter.submitList(filteredKanjiWordItems)
-//            binding.rvKanjiWords.adapter = kanjiWordAdapter
+
+            // agar kanjiWord scroll ke atas saat menekan kanjiCard
+            kanjiWordAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    super.onItemRangeInserted(positionStart, itemCount)
+                    binding.rvKanjiWords.scrollToPosition(0)
+                }
+            })
             // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
     }
