@@ -3,37 +3,24 @@ package com.neonusa.belajarkanjijlpt.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.util.Log
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.R
-import com.neonusa.belajarkanjijlpt.adapter.GridAdapter
-import com.neonusa.belajarkanjijlpt.adapter.HiraganaKatakanaAdapter
 import com.neonusa.belajarkanjijlpt.adapter.JLPTLevelAdapter
-import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordOfTheDayAdapter
 import com.neonusa.belajarkanjijlpt.data.model.JLPTLevelItem
 import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
-import com.neonusa.belajarkanjijlpt.data.model.KanjiSubitem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
-import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
-import com.neonusa.belajarkanjijlpt.utils.generateDummyKOTD
-import com.neonusa.belajarkanjijlpt.utils.hiraganaGenerator
-import com.neonusa.belajarkanjijlpt.utils.katakanaGenerator
-import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
@@ -56,6 +43,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        tts = TextToSpeech(this, this)
 
         loadAds()
         languageSetup()
@@ -86,10 +74,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             onBookmarkClick =  {mainViewModel.updateBookmarkStatus(it.id,!it.is_checked)
             })
         binding.rvKotd.adapter = kanjiWordOfTheDayAdapter
-        mainViewModel.kanjisOfTheDay.observe(this){
-            kanjiWordOfTheDayAdapter.submitList(it.take(4))
-        }
 
+        val kanjiIds = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // ID KANJI UNTU KOTD
+        mainViewModel.getKanjisByIds(kanjiIds).observe(this) { kanjiList ->
+            kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
+        }
 
     }
 
