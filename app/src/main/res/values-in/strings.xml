@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kanjikita - Belajar Kanji JLPT</string>
+    <string name="app_name">Kanjikita</string>
 
     <!--    sample admob    -->
     <string name="sample_adunit_banner">ca-app-pub-3940256099942544/6300978111</string>
@@ -12,4 +12,5 @@
 
     <string name="hiragana_desc">%1$s adalah salah satu dari tiga sistem penulisan utama dalam bahasa Jepang, selain katakana dan kanji</string>
     <string name="katakana_desc">%1$s adalah salah satu dari tiga sistem penulisan utama dalam bahasa Jepang, selain hiragana dan kanji</string>
+    <string name="kombinasi">Kombinasi</string>
 </resources>

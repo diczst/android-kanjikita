@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kanjikita - Learn JLPT Kanji</string>
+    <string name="app_name">Kanjikita</string>
 
 
     <!--    sample admob    -->
@@ -12,4 +12,5 @@
 
     <string name="hiragana_desc">%1$s is one of the three main writing systems in Japanese, along with katakana and kanji</string>
     <string name="katakana_desc">%1$s is one of the three main writing systems in Japanese, along with hiragana and kanji</string>
+    <string name="kombinasi">Combination</string>
 </resources>
