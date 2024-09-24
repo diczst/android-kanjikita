@@ -2,6 +2,9 @@ package com.neonusa.belajarkanjijlpt.utils
 
 import android.content.Context
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // mengubah file json menjadi string biasa
 fun loadJSONFromAssets(fileName: String, context: Context): String? {
@@ -16,4 +19,9 @@ fun loadJSONFromAssets(fileName: String, context: Context): String? {
         ex.printStackTrace()
         null
     }
+}
+
+fun getTodayDate(): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return sdf.format(Date())
 }
