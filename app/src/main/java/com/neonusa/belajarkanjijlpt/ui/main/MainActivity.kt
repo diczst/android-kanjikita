@@ -48,6 +48,14 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         loadAds()
         languageSetup()
 
+        mainViewModel.getCheckedKanjiCount().observe(this){
+            binding.tvLearnedKanji.text = it.toString()
+        }
+
+        mainViewModel.getKanjiCount { count ->
+            binding.tvTotalKanji.text = count.toString()
+        }
+
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
             val intent = Intent(this,DetailActivity::class.java)
             intent.putExtra(DetailActivity.JLPT_LEVEL,it.level)

@@ -19,7 +19,13 @@ interface KanjiDao {
     @Query("UPDATE kanji_table SET is_checked = :isChecked WHERE id = :kanjiId")
     fun updateCheckedStatus(kanjiId: Int, isChecked: Boolean)
 
-    // New function to get 10 kanji based on given ids
+    // New function to get 10 kanji based on given ids for kanji of the day
     @Query("SELECT * FROM kanji_table WHERE id IN (:kanjiIds)")
     fun getKanjisByIds(kanjiIds: List<Int>): LiveData<List<KanjiWord>>
+
+    @Query("SELECT COUNT(*) FROM kanji_table")
+    fun getKanjisCount(): Int
+
+    @Query("SELECT COUNT(*) FROM kanji_table WHERE is_checked = 1")
+    fun getCheckedKanjisCount(): LiveData<Int>
 }

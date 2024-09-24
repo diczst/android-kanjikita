@@ -23,8 +23,23 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     // Function to get 10 kanjis based on the list of IDs
-    // Function to get 10 kanjis based on the list of IDs
     fun getKanjisByIds(kanjiIds: List<Int>): LiveData<List<KanjiWord>> {
         return kanjiDao.getKanjisByIds(kanjiIds) // Return LiveData directly
     }
+
+    // Function to get the total count of kanjis
+    fun getKanjiCount(callback: (Int) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val count = kanjiDao.getKanjisCount() // Suspend function
+            withContext(Dispatchers.Main) {
+                callback(count) // Return result on the Main thread
+            }
+        }
+    }
+
+    // Function to get the live count of checked kanjis
+    fun getCheckedKanjiCount(): LiveData<Int> {
+        return kanjiDao.getCheckedKanjisCount()
+    }
+
 }
