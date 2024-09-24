@@ -15,6 +15,10 @@ interface KanjiDao {
     @Query("SELECT * FROM kanji_table")
     fun getAllKanjis(): LiveData<List<KanjiWord>>
 
+    // Get 10 random kanjis
+    @Query("SELECT * FROM kanji_table ORDER BY RANDOM() LIMIT 10")
+    fun getKanjisOfTheDay(): LiveData<List<KanjiWord>>
+
     // Update bookmark status
     @Query("UPDATE kanji_table SET is_checked = :isChecked WHERE id = :kanjiId")
     fun updateCheckedStatus(kanjiId: Int, isChecked: Boolean)
