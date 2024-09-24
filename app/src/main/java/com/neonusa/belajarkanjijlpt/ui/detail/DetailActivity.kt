@@ -43,6 +43,8 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var jsonKanjiWordString: String? = null
     //==============================================================
 
+    private lateinit var kanjiWordAdapter: KanjiWordAdapter
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,13 +79,19 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
 
-
         jsonKanjiSingleString = loadJSONFromAssets("kanji_single.json", this) // Parse JSON string
         val kanjiListType = object : TypeToken<List<KanjiItem>>() {}.type
         kanjiSingleItems = Gson().fromJson(jsonKanjiSingleString, kanjiListType) // Parse string json to list
         kanjiSingleItemsFilteredByLevel = kanjiSingleItems.filter { it.level!! == jlptLevel } // filter list
         binding.rvSingleKanji.layoutManager = GridLayoutManager(this, 3)
 
+        //==============================================
+        binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
+        kanjiWordAdapter = KanjiWordAdapter(
+            onItemClick = {speakKanji(kanjiWord = it)},
+            onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)
+            })
+        binding.rvKanjiWords.adapter = kanjiWordAdapter
 
         jsonKanjiWordString = loadJSONFromAssets("kanji_words.json", this)
         detailViewModel.insertJsonDataToDatabase(jsonKanjiWordString.toString()) // Insert data dari json ke sqlite
@@ -91,13 +99,12 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val firstKanji = kanjiSingleItemsFilteredByLevel.first()
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 firstKanji.kanji.toString())}
-            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems,
-                onItemClick = {speakKanji(kanjiWord = it)},
-                onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)})
-            binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
-            binding.rvKanjiWords.adapter = kanjiWordAdapter
+            kanjiWordAdapter.submitList(filteredKanjiWordItems)
+            // binding.rvKanjiWords.adapter = kanjiWordAdapter // jangan set adapter di sini kalau tidak mau terscroll ke atas setiap ada perubahan data, tapi bikin aja submitlist
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
+        //==============================================
+
 
         loadKanjiData()
 //        showSubItems(kanjiItems.first())
@@ -112,11 +119,8 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 kanjiSingle.kanji.toString())}
-            val kanjiWordAdapter = KanjiWordAdapter(filteredKanjiWordItems,
-                onItemClick = {speakKanji(kanjiWord = it)},
-                onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)})
-            binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
-            binding.rvKanjiWords.adapter = kanjiWordAdapter
+            kanjiWordAdapter.submitList(filteredKanjiWordItems)
+//            binding.rvKanjiWords.adapter = kanjiWordAdapter
             // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
     }
@@ -164,7 +168,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }
         } else {
-            val text = kanjiWord?.furigana
+            val text = kanjiWord?.kanji_word
             if (text!!.isNotEmpty()) {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }

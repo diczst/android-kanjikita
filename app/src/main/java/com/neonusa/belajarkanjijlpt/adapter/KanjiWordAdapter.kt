@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
@@ -14,10 +15,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class KanjiWordAdapter(private val data: List<KanjiWord>,
-                       private val onItemClick: (KanjiWord) -> Unit,
-                       private val onBookmarkClick: (KanjiWord) -> Unit
-) : RecyclerView.Adapter<KanjiWordAdapter.ViewHolder>() {
+class KanjiWordAdapter(
+    private val onItemClick: (KanjiWord) -> Unit,
+    private val onBookmarkClick: (KanjiWord) -> Unit
+) : ListAdapter<KanjiWord, KanjiWordAdapter.ViewHolder>(KanjiWordDiffCallback()) {
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordTextView: TextView = itemView.findViewById(R.id.kanji_text_view_word)
         val furiganaTextView: TextView = itemView.findViewById(R.id.furigana_text_view_word)
@@ -33,12 +35,13 @@ class KanjiWordAdapter(private val data: List<KanjiWord>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val kanjiWord = data[position]
+        val kanjiWord = getItem(position)  // Access item using getItem()
         holder.wordTextView.text = kanjiWord.kanji_word
         holder.furiganaTextView.text = kanjiWord.furigana
         holder.romajiTextView.text = kanjiWord.romaji
 
-        if(MyPreference.lang.equals("in")){
+        // Setting meaning based on language preference
+        if (MyPreference.lang.equals("in")) {
             val firstWord = kanjiWord.mean_id.split(";").first().trim()
             holder.meanTextView.text = firstWord
         } else {
@@ -46,24 +49,26 @@ class KanjiWordAdapter(private val data: List<KanjiWord>,
             holder.meanTextView.text = firstWord
         }
 
-        if(kanjiWord.is_checked){
+        // Set checked icon based on is_checked flag
+        if (kanjiWord.is_checked) {
             holder.checkedIcon.setImageResource(R.drawable.baseline_checked_circle_24)
         } else {
             holder.checkedIcon.setImageResource(R.drawable.baseline_check_circle_outline_gray_24)
         }
 
-        // Handle klik pada checkedIcon
+        // Handle bookmark click
         holder.checkedIcon.setOnClickListener {
             onBookmarkClick(kanjiWord)
+            notifyItemChanged(position)
         }
 
+        // Handle item click with animation
         holder.itemView.setOnClickListener {
             it.animate()
-                .scaleX(1.1f)  // Perbesar skala X
-                .scaleY(1.1f)  // Perbesar skala Y
-                .setDuration(100)  // Durasi animasi
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(100)
                 .withEndAction {
-                    // Kembalikan ke ukuran semula
                     it.animate()
                         .scaleX(1f)
                         .scaleY(1f)
@@ -73,8 +78,5 @@ class KanjiWordAdapter(private val data: List<KanjiWord>,
                 .start()
             onItemClick(kanjiWord)
         }
-
     }
-
-    override fun getItemCount(): Int = data.size
 }
