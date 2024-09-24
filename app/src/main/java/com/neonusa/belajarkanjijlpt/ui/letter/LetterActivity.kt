@@ -6,6 +6,7 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.HiraganaKatakanaAdapter
 import com.neonusa.belajarkanjijlpt.data.model.HiraganaKatakanaItem
 import com.neonusa.belajarkanjijlpt.databinding.ActivityLetterBinding
@@ -41,13 +42,13 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         if(letterType == HIRAGANA) {
             actionBarTitle = "Hiragana"
-            desc = "$actionBarTitle adalah salah satu dari tiga sistem penulisan utama dalam bahasa Jepang, selain katakana dan kanji"
+            desc = getString(R.string.hiragana_desc, actionBarTitle)
             hirakataItems = hiraganaGenerator()
             dakuonHirakataItems = hiraganaDakuonGenerator()
             combinationHirakataItems = hiraganaCombinationGenerator()
         } else {
             actionBarTitle = "Katakana"
-            desc = "$actionBarTitle adalah salah satu dari tiga sistem penulisan utama dalam bahasa Jepang, selain hiragana dan kanji"
+            desc = getString(R.string.katakana_desc, actionBarTitle)
             hirakataItems = katakanaGenerator()
             dakuonHirakataItems = katakanaDakuonGenerator()
             combinationHirakataItems = katakanaCombinationGenerator()

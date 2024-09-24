@@ -147,7 +147,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
             binding.rvSingleKanji.adapter = kanjiAdapter
         }
-        binding.pageTitle.text = "Halaman ${currentPage + 1}"
+        binding.pageTitle.text = getString(R.string.page_title, currentPage + 1)
     }
 
 //    private fun showSubItems(item: KanjiItem){

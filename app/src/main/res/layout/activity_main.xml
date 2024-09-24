@@ -55,7 +55,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Kemajuan Belajar"
+                                android:text="@string/Kemajuan"
                                 style="@style/TextAppearance.AppCompat.Title"
                                 android:textSize="13sp" />
 
@@ -96,7 +96,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
                                     android:textSize="12sp"
-                                    android:text="kanji dipelajari" />
+                                    android:text="@string/kanji_dipelajari" />
                             </LinearLayout>
                         </RelativeLayout>
 
@@ -151,7 +151,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kanji of the day"
+                            android:text="@string/kanji_hari_ini"
                             style="@style/TextAppearance.AppCompat.Title"
                             android:textSize="13sp" />
 
@@ -169,7 +169,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:textSize="12sp"
-                                android:text="Lihat Semua"/>
+                                android:text="@string/lihat_semua"/>
 
                             <ImageView
                                 android:layout_width="10dp"
@@ -266,76 +266,28 @@
 
             </LinearLayout>
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="12dp"-->
-<!--                android:layout_marginTop="16dp">-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="12dp">
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Hiragana"-->
-<!--                    style="@style/TextAppearance.AppCompat.Title"-->
-<!--                    android:textSize="15sp" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:text="Developed by Neonusa"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_hiragana"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:text="Selengkapnya"-->
-<!--                    android:textColor="?attr/colorPrimary"-->
-<!--                    android:textSize="14sp" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Version 1.0.0"/>
 
-<!--            </RelativeLayout>-->
-
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rv_hiragana"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="18dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--                tools:listitem="@layout/item_hiragana_katakana"-->
-<!--                tools:spanCount="5"-->
-<!--                tools:itemCount="10"/>-->
-
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="12dp"-->
-<!--                android:layout_marginTop="16dp">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Katakana"-->
-<!--                    style="@style/TextAppearance.AppCompat.Title"-->
-<!--                    android:textSize="15sp" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_katakana"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:text="Selengkapnya"-->
-<!--                    android:textColor="?attr/colorPrimary"-->
-<!--                    android:textSize="14sp" />-->
-
-<!--            </RelativeLayout>-->
-
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rv_katakana"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="18dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginBottom="12dp"-->
-<!--                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--                tools:listitem="@layout/item_hiragana_katakana"-->
-<!--                tools:spanCount="5"-->
-<!--                tools:itemCount="10"/>-->
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

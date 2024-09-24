@@ -1,7 +1,21 @@
 <resources>
-    <string name="app_name">Belajar Kanji JLPT</string>
+    <string name="app_name">Kanjikita</string>
+
 
     <!--    sample admob    -->
     <string name="sample_adunit_banner">ca-app-pub-3940256099942544/6300978111</string>
     <string name="sample_adunit_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="Kemajuan">Progress</string>
+    <string name="kanji_dipelajari">kanji learned</string>
+    <string name="lihat_semua">View All</string>
+    <string name="cari_kanji">Search Kanji</string>
+    <string name="page_title">Page %d</string>
+    <string name="hiragana_desc">%1$s is one of the three main writing systems in Japanese, along with katakana and kanji</string>
+    <string name="katakana_desc">%1$s is one of the three main writing systems in Japanese, along with hiragana and kanji</string>
+    <string name="kombinasi">Combination</string>
+    <string name="kanji_dipelajari_2">Kanji Learned</string>
+    <string name="belum_ada_data">No Data Available</string>
+    <string name="mulai_belajar_sekarang">Start learning now, and your data will appear here after studying some kanji.</string>
+    <string name="kanji_hari_ini">Kanji of the Day</string>
+    <string name="kosakata">Vocabulary</string>
 </resources>
