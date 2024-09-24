@@ -19,6 +19,7 @@ import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
+import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -103,14 +104,17 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
         }
 
+        binding.layoutHomeToolbar.ivLearned.setOnClickListener {
+            val intent = Intent(this, LearnedActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
-
 
     private fun loadAds(){
         val adView = AdView(this)
