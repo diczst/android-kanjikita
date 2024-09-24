@@ -9,7 +9,7 @@
     <string name="kanji_dipelajari">kanji learned</string>
     <string name="lihat_semua">View All</string>
     <string name="cari_kanji">Search Kanji</string>
-
+    <string name="page_title">Page %d</string>
     <string name="hiragana_desc">%1$s is one of the three main writing systems in Japanese, along with katakana and kanji</string>
     <string name="katakana_desc">%1$s is one of the three main writing systems in Japanese, along with hiragana and kanji</string>
     <string name="kombinasi">Combination</string>
@@ -17,4 +17,5 @@
     <string name="belum_ada_data">No Data Available</string>
     <string name="mulai_belajar_sekarang">Start learning now, and your data will appear here after studying some kanji.</string>
     <string name="kanji_hari_ini">Kanji of the Day</string>
+    <string name="kosakata">Vocabulary</string>
 </resources>
