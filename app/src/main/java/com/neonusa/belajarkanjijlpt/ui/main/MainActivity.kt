@@ -48,13 +48,24 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         loadAds()
         languageSetup()
 
-        mainViewModel.getCheckedKanjiCount().observe(this){
-            binding.tvLearnedKanji.text = it.toString()
+        mainViewModel.getCheckedKanjiCount().observe(this){ learnedKanjiCount ->
+            mainViewModel.getKanjiCount { totalKanjiCount ->
+                binding.tvTotalKanji.text = totalKanjiCount.toString()
+                binding.tvLearnedKanji.text = learnedKanjiCount.toString()
+
+                // Make sure totalKanjiCount is not zero to avoid division by zero
+                if (totalKanjiCount > 0) {
+                    val progress = (learnedKanjiCount * 100) / totalKanjiCount
+                    // Update ProgressBar
+                    binding.pbarKanjiLearned.progress = progress
+                } else {
+                    // Handle case where totalKanjiCount is 0 (if applicable)
+                    binding.pbarKanjiLearned.progress = 0
+                }
+            }
         }
 
-        mainViewModel.getKanjiCount { count ->
-            binding.tvTotalKanji.text = count.toString()
-        }
+
 
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
             val intent = Intent(this,DetailActivity::class.java)

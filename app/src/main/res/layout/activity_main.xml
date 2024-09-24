@@ -73,7 +73,8 @@
                                     android:layout_marginStart="4dp"
                                     android:textColor="?attr/colorPrimary"
                                     android:textSize="12sp"
-                                    android:text="24"/>
+                                    android:contentDescription="learned_kanji"
+                                    android:text="..."/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -87,7 +88,8 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="?attr/colorPrimary"
                                     android:textSize="12sp"
-                                    android:text="1000"/>
+                                    android:contentDescription="total_kanji"
+                                    android:text="...."/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -99,6 +101,7 @@
                         </RelativeLayout>
 
                         <ProgressBar
+                            android:id="@+id/pbar_kanji_learned"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
