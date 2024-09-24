@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Kanji Dipelajari"
+                android:text="@string/kanji_dipelajari_2"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -80,7 +80,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Kemajuan Belajar"
+                            android:text="@string/Kemajuan"
                             style="@style/TextAppearance.AppCompat.Title"
                             android:textSize="13sp" />
 
@@ -121,7 +121,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:textSize="12sp"
-                                android:text="kanji dipelajari" />
+                                android:text="@string/kanji_dipelajari" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -183,7 +183,7 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:textSize="14sp"
             android:layout_marginTop="12sp"
-            android:text="Belum Ada Data" />
+            android:text="@string/belum_ada_data" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
             android:textAlignment="center"
             android:textSize="12sp"
             android:layout_marginHorizontal="16dp"
-            android:text="Mulai belajar sekarang dan data Anda akan muncul di sini setelah mempelajari beberapa kanji."/>
+            android:text="@string/mulai_belajar_sekarang"/>
 
     </LinearLayout>
 

@@ -13,4 +13,7 @@
     <string name="hiragana_desc">%1$s is one of the three main writing systems in Japanese, along with katakana and kanji</string>
     <string name="katakana_desc">%1$s is one of the three main writing systems in Japanese, along with hiragana and kanji</string>
     <string name="kombinasi">Combination</string>
+    <string name="kanji_dipelajari_2">Kanji Learned</string>
+    <string name="belum_ada_data">No Data Available</string>
+    <string name="mulai_belajar_sekarang">Start learning now, and your data will appear here after studying some kanji.</string>
 </resources>
