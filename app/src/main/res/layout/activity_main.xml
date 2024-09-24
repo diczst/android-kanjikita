@@ -55,7 +55,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Kemajuan Belajar"
+                                android:text="@string/Kemajuan"
                                 style="@style/TextAppearance.AppCompat.Title"
                                 android:textSize="13sp" />
 
@@ -96,7 +96,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
                                     android:textSize="12sp"
-                                    android:text="kanji dipelajari" />
+                                    android:text="@string/kanji_dipelajari" />
                             </LinearLayout>
                         </RelativeLayout>
 
@@ -169,7 +169,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
                                 android:textSize="12sp"
-                                android:text="Lihat Semua"/>
+                                android:text="@string/lihat_semua"/>
 
                             <ImageView
                                 android:layout_width="10dp"
