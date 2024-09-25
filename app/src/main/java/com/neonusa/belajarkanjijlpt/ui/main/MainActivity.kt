@@ -113,7 +113,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.rvKotd.layoutManager = LinearLayoutManager(this)
         kanjiWordOfTheDayAdapter = KanjiWordOfTheDayAdapter(
             onItemClick = {speakKanji(kanjiWord = it)},
-            onBookmarkClick =  {mainViewModel.updateBookmarkStatus(it.id,!it.is_checked)
+            onBookmarkClick =  {
+                speakKanji(kanjiWord = it)
+                //todo : putar audio
+                mainViewModel.updateBookmarkStatus(it.id,!it.is_checked)
             })
         binding.rvKotd.adapter = kanjiWordOfTheDayAdapter
 
@@ -172,7 +175,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }
         }
-
     }
 
     override fun onInit(status: Int) {
