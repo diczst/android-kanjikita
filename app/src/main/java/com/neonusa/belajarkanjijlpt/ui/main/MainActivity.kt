@@ -22,6 +22,7 @@ import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
 import com.neonusa.belajarkanjijlpt.ui.kanjioftheday.KanjiOfTheDayActivity
 import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
+import com.neonusa.belajarkanjijlpt.ui.search.SearchActivity
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
@@ -52,6 +53,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         binding.tvViewAllKotd.setOnClickListener {
             val intent = Intent(this, KanjiOfTheDayActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.layoutHomeToolbar.layoutSearchHome.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
 
