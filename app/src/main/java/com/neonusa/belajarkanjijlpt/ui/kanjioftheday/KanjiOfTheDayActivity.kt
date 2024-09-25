@@ -1,5 +1,6 @@
 package com.neonusa.belajarkanjijlpt.ui.kanjioftheday
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
@@ -20,6 +21,7 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var binding: ActivityKanjiOfTheDayBinding
     private val kanjiOfTheDayViewModel: KanjiOfTheDayViewModel by viewModel()
     private lateinit var tts: TextToSpeech
+    private lateinit var mediaPlayer: MediaPlayer
     private lateinit var kanjiWordOfTheDayAdapter: KanjiWordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding = ActivityKanjiOfTheDayBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
+        mediaPlayer = MediaPlayer.create(this, R.raw.learned)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -35,7 +38,13 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
         kanjiWordOfTheDayAdapter = KanjiWordAdapter(
             onItemClick = {speakKanji(kanjiWord = it)},
-            onBookmarkClick =  {kanjiOfTheDayViewModel.updateBookmarkStatus(it.id,!it.is_checked)
+            onBookmarkClick =  {
+                if(!it.is_checked){
+                    // Cek apakah MediaPlayer sedang diputar, jika ya maka stop dan reset
+                    playSound()
+                    speakKanji(kanjiWord = it)
+                }
+                kanjiOfTheDayViewModel.updateBookmarkStatus(it.id,!it.is_checked)
             })
         binding.rvKanjiWords.adapter = kanjiWordOfTheDayAdapter
 
@@ -59,6 +68,19 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         } else {
             Toast.makeText(this, getString(R.string.inisialisasi_tts_gagal), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun playSound(){
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            // Inisialisasi ulang MediaPlayer setelah release
+            mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+        }
+
+        // Mulai pemutaran setelah memvalidasi ulang
+        mediaPlayer.start()
     }
 
     // Fungsi untuk memutar suara TTS

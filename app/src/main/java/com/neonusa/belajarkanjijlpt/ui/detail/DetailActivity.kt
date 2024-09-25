@@ -111,8 +111,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
         //==============================================
-
-
         loadKanjiData()
     }
 
