@@ -19,4 +19,7 @@
     <string name="kanji_hari_ini">Kanji of the Day</string>
     <string name="kosakata">Vocabulary</string>
     <string name="hasil_pencarian_tidak_ditemukan">No results found</string>
+
+    <string name="bahasa_tidak_didukung">Language not supported</string>
+    <string name="inisialisasi_tts_gagal">TextToSpeech initialization failed</string>
 </resources>

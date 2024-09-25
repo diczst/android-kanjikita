@@ -19,4 +19,9 @@
     <string name="kanji_hari_ini">Kanji Hari Ini</string>
     <string name="kosakata">Kosakata</string>
     <string name="hasil_pencarian_tidak_ditemukan">Tidak ada hasil ditemukan</string>
+
+    <string name="bahasa_tidak_didukung">Bahasa tidak didukung</string>
+    <string name="inisialisasi_tts_gagal">Inisialisasi TextToSpeech gagal</string>
+
+
 </resources>
