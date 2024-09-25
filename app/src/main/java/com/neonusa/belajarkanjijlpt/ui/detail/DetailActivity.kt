@@ -2,6 +2,7 @@ package com.neonusa.belajarkanjijlpt.ui.detail
 
 import DetailViewModel
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
@@ -27,6 +28,7 @@ import java.util.Locale
 class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var tts: TextToSpeech
+    private lateinit var mediaPlayer: MediaPlayer
     private lateinit var jlptLevel: String
     private val detailViewModel: DetailViewModel by viewModel()
 
@@ -46,6 +48,8 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+
         loadAds()
 
         tts = TextToSpeech(this, this)
@@ -89,7 +93,12 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.rvKanjiWords.layoutManager = LinearLayoutManager(this)
         kanjiWordAdapter = KanjiWordAdapter(
             onItemClick = {speakKanji(kanjiWord = it)},
-            onBookmarkClick =  {detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)
+            onBookmarkClick =  {
+                if(!it.is_checked){
+                    playSound()
+                    speakKanji(kanjiWord = it)
+                }
+                detailViewModel.updateBookmarkStatus(it.id,!it.is_checked)
             })
         binding.rvKanjiWords.adapter = kanjiWordAdapter
 
@@ -101,11 +110,22 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
         //==============================================
-
-
         loadKanjiData()
-//        showSubItems(kanjiItems.first())
     }
+
+    private fun playSound(){
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            // Inisialisasi ulang MediaPlayer setelah release
+            mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+        }
+
+        // Mulai pemutaran setelah memvalidasi ulang
+        mediaPlayer.start()
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
