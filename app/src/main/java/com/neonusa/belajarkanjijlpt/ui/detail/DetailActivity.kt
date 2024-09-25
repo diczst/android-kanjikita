@@ -162,7 +162,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }
         } else {
-            val text = kanjiWord?.kanji_word
+            val text = kanjiWord?.furigana
             if (text!!.isNotEmpty()) {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }

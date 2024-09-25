@@ -70,7 +70,7 @@ class SearchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     // Fungsi untuk memutar suara TTS
     private fun speakKanji(kanjiItem: KanjiItem? = null, kanjiWord: KanjiWord? = null) {
-        val text = kanjiItem?.kanji ?: kanjiWord?.kanji_word
+        val text = kanjiItem?.kanji ?: kanjiWord?.furigana
         if (!text.isNullOrEmpty()) {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
         }
