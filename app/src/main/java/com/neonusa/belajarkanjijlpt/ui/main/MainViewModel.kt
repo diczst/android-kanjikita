@@ -9,6 +9,7 @@ import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.data.room.KanjiDao
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
 import com.neonusa.belajarkanjijlpt.utils.getTodayDate
+import com.neonusa.belajarkanjijlpt.utils.parseJsonToKanjiList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,17 +18,27 @@ import org.koin.core.component.inject
 
 class MainViewModel : ViewModel(), KoinComponent {
     private val kanjiDao: KanjiDao by inject()
+    private var jsonKanjiWordString: String? = null
+
+    // Memasukkan data ke dalam database
+    fun insertJsonDataToDatabase(jsonString: String, onInsertComplete: () -> Unit) {
+        viewModelScope.launch {
+            val kanjiList = parseJsonToKanjiList(jsonString)
+            Log.d(this::class.simpleName, "insertJsonDataToDatabase: $kanjiList")
+            withContext(Dispatchers.IO) {
+                kanjiDao.insertAll(kanjiList) // Insert on background thread
+                withContext(Dispatchers.Main) {
+                    onInsertComplete() // Notify that insert is complete
+                }
+            }
+        }
+    }
 
     // Update bookmark status
     fun updateBookmarkStatus(kanjiId: Int, isChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             kanjiDao.updateCheckedStatus(kanjiId, isChecked)
         }
-    }
-
-    // Function to get 10 kanjis based on the list of IDs
-    fun getKanjisByIds(kanjiIds: List<Int>): LiveData<List<KanjiWord>> {
-        return kanjiDao.getKanjisByIds(kanjiIds) // Return LiveData directly
     }
 
     // Function to get the total count of kanjis
@@ -87,6 +98,4 @@ class MainViewModel : ViewModel(), KoinComponent {
             }
         }
     }
-
-
 }

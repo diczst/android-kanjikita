@@ -25,6 +25,7 @@ import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.ui.search.SearchActivity
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
+import com.neonusa.belajarkanjijlpt.utils.loadJSONFromAssets
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         JLPTLevelItem("N2", R.drawable.four), // Gambar PNG untuk N2
         JLPTLevelItem("N1", R.drawable.five)  // Gambar PNG untuk N1
     )
+
+    private var jsonKanjiWordString: String? = null
 
     private lateinit var kanjiWordOfTheDayAdapter: KanjiWordOfTheDayAdapter
 
@@ -114,13 +117,13 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             })
         binding.rvKotd.adapter = kanjiWordOfTheDayAdapter
 
-//        val kanjiIds = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // ID KANJI UNTU KOTD
-//        mainViewModel.getKanjisByIds(kanjiIds).observe(this) { kanjiList ->
-//            kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
-//        }
-
-        mainViewModel.getRandomKanjisOfTheDay { kanjiList->
-            kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
+        // Insert data dari json ke sqlite dan tampilkan data setelah proses insert selesai
+        jsonKanjiWordString = loadJSONFromAssets("kanji_words.json", this)
+        mainViewModel.insertJsonDataToDatabase(jsonKanjiWordString.toString()) {
+            // Panggil data kanji setelah insert selesai
+            mainViewModel.getRandomKanjisOfTheDay { kanjiList ->
+                kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
+            }
         }
 
         binding.layoutHomeToolbar.ivLearned.setOnClickListener {

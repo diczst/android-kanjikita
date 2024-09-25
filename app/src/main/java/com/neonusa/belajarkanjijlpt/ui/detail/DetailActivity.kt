@@ -39,11 +39,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val itemsPerPage = 9
     //==============================================================
 
-    // KANJI WORDS
-    //==============================================================
-    private var jsonKanjiWordString: String? = null
-    //==============================================================
-
     private lateinit var kanjiWordAdapter: KanjiWordAdapter
 
     @SuppressLint("SetTextI18n")
@@ -94,8 +89,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             })
         binding.rvKanjiWords.adapter = kanjiWordAdapter
 
-        jsonKanjiWordString = loadJSONFromAssets("kanji_words.json", this)
-        detailViewModel.insertJsonDataToDatabase(jsonKanjiWordString.toString()) // Insert data dari json ke sqlite
         detailViewModel.kanjis.observe(this) { kanjiList -> // Memuat data dari sqlite
             val firstKanji = kanjiSingleItemsFilteredByLevel.first()
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
