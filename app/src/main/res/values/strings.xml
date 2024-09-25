@@ -18,4 +18,5 @@
     <string name="mulai_belajar_sekarang">Start learning now, and your data will appear here after studying some kanji.</string>
     <string name="kanji_hari_ini">Kanji of the Day</string>
     <string name="kosakata">Vocabulary</string>
+    <string name="hasil_pencarian_tidak_ditemukan">No results found</string>
 </resources>

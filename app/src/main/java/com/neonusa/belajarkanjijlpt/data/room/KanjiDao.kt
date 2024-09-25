@@ -15,6 +15,16 @@ interface KanjiDao {
     @Query("SELECT * FROM kanji_table")
     fun getAllKanjis(): LiveData<List<KanjiWord>>
 
+    @Query("""
+        SELECT * FROM kanji_table 
+        WHERE kanji_word LIKE :query 
+        OR furigana LIKE :query 
+        OR romaji LIKE :query 
+        OR mean_id LIKE :query 
+        OR mean_en LIKE :query
+    """)
+    fun searchKanji(query: String): LiveData<List<KanjiWord>>
+
     @Query("SELECT * FROM kanji_table WHERE is_checked = 1")
     fun getLearnedKanji(): LiveData<List<KanjiWord>>
 
