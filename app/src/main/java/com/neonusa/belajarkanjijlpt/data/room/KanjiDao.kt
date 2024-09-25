@@ -31,4 +31,8 @@ interface KanjiDao {
 
     @Query("SELECT COUNT(*) FROM kanji_table WHERE is_checked = 1")
     fun getCheckedKanjisCount(): LiveData<Int>
+
+    // get count of checked kanji in 10 kanji of the day
+    @Query("SELECT COUNT(*) FROM kanji_table WHERE id IN (:kanjiIds) AND is_checked = 1")
+    fun getCheckedKanjisCountByIds(kanjiIds: List<Int>): LiveData<Int>
 }
