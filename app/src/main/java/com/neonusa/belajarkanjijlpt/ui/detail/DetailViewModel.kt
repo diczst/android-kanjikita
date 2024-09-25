@@ -19,35 +19,10 @@ class DetailViewModel : ViewModel(), KoinComponent {
     // LiveData untuk menyimpan hasil dari database
     val kanjis: LiveData<List<KanjiWord>> = kanjiDao.getAllKanjis()
 
-    // Memasukkan data ke dalam database
-    fun insertJsonDataToDatabase(jsonString: String) {
-        viewModelScope.launch {
-            val kanjiList = parseJsonToKanjiList(jsonString)
-            Log.d(this::class.simpleName, "insertJsonDataToDatabase: $kanjiList")
-            withContext(Dispatchers.IO) {
-                kanjiDao.insertAll(kanjiList) // Insert on background thread
-            }
-        }
-    }
-
     // Update bookmark status
     fun updateBookmarkStatus(kanjiId: Int, isChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             kanjiDao.updateCheckedStatus(kanjiId, isChecked)
-        }
-    }
-
-    // Fungsi helper untuk parsing JSON (implementasikan sesuai kebutuhan Anda)
-    private fun parseJsonToKanjiList(jsonString: String): List<KanjiWord> {
-        return try {
-            // Define the type for List<KanjiWord>
-            val kanjiListType = object : TypeToken<List<KanjiWord>>() {}.type
-            val kanjiList: List<KanjiWord> = Gson().fromJson(jsonString, kanjiListType)
-            Log.d(this::class.simpleName, "JSON parsed successfully: $kanjiList")
-            kanjiList // Return the parsed list
-        } catch (e: Exception) {
-            Log.e(this::class.simpleName, "Error parsing JSON: ${e.message}")
-            emptyList() // Return empty list if parsing fails
         }
     }
 }

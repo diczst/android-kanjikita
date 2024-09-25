@@ -1,6 +1,10 @@
 package com.neonusa.belajarkanjijlpt.utils
 
 import android.content.Context
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -18,6 +22,18 @@ fun loadJSONFromAssets(fileName: String, context: Context): String? {
     } catch (ex: IOException) {
         ex.printStackTrace()
         null
+    }
+}
+
+// Fungsi helper untuk parsing JSON (implementasikan sesuai kebutuhan Anda)
+fun parseJsonToKanjiList(jsonString: String): List<KanjiWord> {
+    return try {
+        // Define the type for List<KanjiWord>
+        val kanjiListType = object : TypeToken<List<KanjiWord>>() {}.type
+        val kanjiList: List<KanjiWord> = Gson().fromJson(jsonString, kanjiListType)
+        kanjiList // Return the parsed list
+    } catch (e: Exception) {
+        emptyList() // Return empty list if parsing fails
     }
 }
 
