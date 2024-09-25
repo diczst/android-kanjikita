@@ -6,7 +6,7 @@
     <string name="sample_adunit_banner">ca-app-pub-3940256099942544/6300978111</string>
     <string name="sample_adunit_interstitial">ca-app-pub-3940256099942544/1033173712</string>
     <string name="Kemajuan">Progress</string>
-    <string name="kanji_dipelajari">kanji learned</string>
+    <string name="kanji_dipelajari">words learned</string>
     <string name="lihat_semua">View All</string>
     <string name="cari_kanji">Search Kanji</string>
     <string name="page_title">Page %d</string>
