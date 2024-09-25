@@ -95,7 +95,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             onItemClick = {speakKanji(kanjiWord = it)},
             onBookmarkClick =  {
                 if(!it.is_checked){
-                    // Cek apakah MediaPlayer sedang diputar, jika ya maka stop dan reset
                     playSound()
                     speakKanji(kanjiWord = it)
                 }

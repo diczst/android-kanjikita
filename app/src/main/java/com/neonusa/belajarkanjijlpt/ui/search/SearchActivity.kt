@@ -1,5 +1,6 @@
 package com.neonusa.belajarkanjijlpt.ui.search
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
@@ -20,17 +22,25 @@ class SearchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val searchViewModel: SearchViewModel by viewModel()
     private lateinit var kanjiWordAdapter: KanjiWordAdapter
     private lateinit var tts: TextToSpeech
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
+        mediaPlayer = MediaPlayer.create(this, R.raw.learned)
 
         binding.rvWord.layoutManager = LinearLayoutManager(this)
         kanjiWordAdapter = KanjiWordAdapter(
             onItemClick = {speakKanji(kanjiWord = it)},
-            onBookmarkClick = {searchViewModel.updateBookmarkStatus(it.id, !it.is_checked)}
+            onBookmarkClick = {
+                if(!it.is_checked){
+                    playSound()
+                    speakKanji(kanjiWord = it)
+                }
+                searchViewModel.updateBookmarkStatus(it.id, !it.is_checked)
+            }
         )
         binding.rvWord.adapter = kanjiWordAdapter
 
@@ -66,6 +76,19 @@ class SearchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.ivSearchBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun playSound(){
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            // Inisialisasi ulang MediaPlayer setelah release
+            mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+        }
+
+        // Mulai pemutaran setelah memvalidasi ulang
+        mediaPlayer.start()
     }
 
     // Fungsi untuk memutar suara TTS
