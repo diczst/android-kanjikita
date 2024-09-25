@@ -1,6 +1,7 @@
 package com.neonusa.belajarkanjijlpt.ui.main
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.Menu
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModel()
     private lateinit var tts: TextToSpeech
+    private lateinit var mediaPlayer: MediaPlayer
 
     val jlptLevels = listOf(
         JLPTLevelItem("N5", R.drawable.one), // Gambar PNG untuk N5
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
+        mediaPlayer = MediaPlayer.create(this, R.raw.learned)
 
         loadAds()
         languageSetup()
@@ -114,8 +117,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         kanjiWordOfTheDayAdapter = KanjiWordOfTheDayAdapter(
             onItemClick = {speakKanji(kanjiWord = it)},
             onBookmarkClick =  {
-                speakKanji(kanjiWord = it)
-                //todo : putar audio
+                if(!it.is_checked){
+                    // Cek apakah MediaPlayer sedang diputar, jika ya maka stop dan reset
+                    playSound()
+                    speakKanji(kanjiWord = it)
+                }
                 mainViewModel.updateBookmarkStatus(it.id,!it.is_checked)
             })
         binding.rvKotd.adapter = kanjiWordOfTheDayAdapter
@@ -134,6 +140,19 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             startActivity(intent)
         }
 
+    }
+
+    private fun playSound(){
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            // Inisialisasi ulang MediaPlayer setelah release
+            mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+        }
+
+        // Mulai pemutaran setelah memvalidasi ulang
+        mediaPlayer.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -192,6 +211,9 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if (tts != null) {
             tts.stop()
             tts.shutdown()
+        }
+        if (::mediaPlayer.isInitialized) {
+            mediaPlayer.release()
         }
         super.onDestroy()
     }
