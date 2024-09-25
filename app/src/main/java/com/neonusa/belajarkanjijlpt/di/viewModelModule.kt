@@ -4,6 +4,7 @@ import DetailViewModel
 import com.neonusa.belajarkanjijlpt.ui.kanjioftheday.KanjiOfTheDayViewModel
 import com.neonusa.belajarkanjijlpt.ui.learned.LearnedViewModel
 import com.neonusa.belajarkanjijlpt.ui.main.MainViewModel
+import com.neonusa.belajarkanjijlpt.ui.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -12,4 +13,5 @@ val viewModelModule = module {
     viewModel { MainViewModel() }
     viewModel { LearnedViewModel() }
     viewModel { KanjiOfTheDayViewModel() }
+    viewModel { SearchViewModel() }
 }

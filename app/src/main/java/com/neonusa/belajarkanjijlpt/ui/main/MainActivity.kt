@@ -6,6 +6,7 @@ import android.speech.tts.TextToSpeech
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
@@ -57,8 +58,16 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         binding.layoutHomeToolbar.layoutSearchHome.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(this@MainActivity, SearchActivity::class.java)
+            // Membuat ActivityOptionsCompat untuk menambahkan animasi transisi
+            val options = ActivityOptionsCompat.makeCustomAnimation(
+                this@MainActivity,
+                android.R.anim.fade_in,  // animasi saat activity muncul
+                android.R.anim.fade_out  // animasi saat activity keluar
+            )
+
+            // Mulai activity dengan animasi
+            startActivity(intent, options.toBundle())
         }
 
         mainViewModel.getCheckedKanjiCount().observe(this){ learnedKanjiCount ->
