@@ -18,7 +18,6 @@ import org.koin.core.component.inject
 
 class MainViewModel : ViewModel(), KoinComponent {
     private val kanjiDao: KanjiDao by inject()
-    private var jsonKanjiWordString: String? = null
 
     // Memasukkan data ke dalam database
     fun insertJsonDataToDatabase(jsonString: String, onInsertComplete: () -> Unit) {

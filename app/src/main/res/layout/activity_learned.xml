@@ -131,7 +131,6 @@
                         android:layout_height="match_parent"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_marginTop="4dp"
-                        android:progress="24"
                         android:layout_marginHorizontal="26dp"
                         android:layout_marginBottom="16dp"/>
 

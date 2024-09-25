@@ -59,7 +59,11 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.prevButton.setOnClickListener {
             if (currentPage > 0) {
                 currentPage--
+                val start = currentPage * itemsPerPage
+                val end = minOf(start + itemsPerPage, kanjiSingleItemsFilteredByLevel.size)
+                val pageData = kanjiSingleItemsFilteredByLevel.subList(start, end)
                 loadKanjiData()
+                loadKanjiWordData(pageData.first())
             }
         }
 
@@ -71,7 +75,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 val end = minOf(start + itemsPerPage, kanjiSingleItemsFilteredByLevel.size)
                 val pageData = kanjiSingleItemsFilteredByLevel.subList(start, end)
                 loadKanjiData()
-//                showSubItems(pageData.first())
+                loadKanjiWordData(pageData.first())
             }
         }
 
@@ -129,12 +133,9 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         val start = currentPage * itemsPerPage
 
         if (jsonKanjiSingleString != null) {
-//            val filteredByJLPTLevel = kanjiItems.filter { it.JLPTLevel == jlptLevel }
                 val end = minOf(start + itemsPerPage, kanjiSingleItemsFilteredByLevel.size)
             val pageData = kanjiSingleItemsFilteredByLevel.subList(start, end)
             val kanjiAdapter = GridAdapter(pageData){
-                // when item clicked
-//                showSubItems(it)
                 speakKanji(kanjiItem = it)
                 loadKanjiWordData(it)
             }
@@ -142,13 +143,6 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         binding.pageTitle.text = getString(R.string.page_title, currentPage + 1)
     }
-
-//    private fun showSubItems(item: KanjiItem){
-//        val kotdAdapter = SubitemAdapter(kanjiSubitems.filter { it.kanji_item_id == item.id })
-//        binding.recyclerviewSubitem.layoutManager = LinearLayoutManager(this)
-//        binding.recyclerviewSubitem.adapter = kotdAdapter
-//
-//    }
 
     private fun loadAds(){
         val adView = AdView(this)
