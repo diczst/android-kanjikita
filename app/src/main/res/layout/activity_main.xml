@@ -59,11 +59,27 @@
                                 style="@style/TextAppearance.AppCompat.Title"
                                 android:textSize="13sp" />
 
-                            <LinearLayout
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:id="@+id/shimmer_words_learned"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentEnd="true"
+                                app:shimmer_auto_start="true">
+                                <View
+                                    android:layout_width="120dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@android:color/darker_gray" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_words_learned"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
+                                android:visibility="gone"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -106,7 +122,7 @@
                             android:layout_height="match_parent"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                             android:layout_marginTop="4dp"
-                            android:progress="24"
+                            android:progress="0"
                             android:layout_marginHorizontal="26dp"
                             android:layout_marginBottom="16dp"/>
 

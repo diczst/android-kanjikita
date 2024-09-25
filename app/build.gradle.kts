@@ -76,6 +76,6 @@ dependencies {
     // Koin dependencies
     implementation ("io.insert-koin:koin-android:3.1.2")
 
-    // Google Admob
-//    implementation ("com.google.android.gms:play-services-ads:21.1.0")
+    // Shimmer loading
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 }

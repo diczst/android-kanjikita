@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
@@ -80,6 +81,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             mainViewModel.getKanjiCount { totalKanjiCount ->
                 binding.tvTotalKanji.text = totalKanjiCount.toString()
                 binding.tvLearnedKanji.text = learnedKanjiCount.toString()
+                stopShimmer()
 
                 // Make sure totalKanjiCount is not zero to avoid division by zero
                 if (totalKanjiCount > 0) {
@@ -154,9 +156,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         mediaPlayer.start()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
+    private fun stopShimmer() {
+        binding.shimmerWordsLearned.stopShimmer() // Hentikan animasi shimmer
+        binding.shimmerWordsLearned.visibility = View.GONE
+        binding.layoutWordsLearned.visibility = View.VISIBLE // Tampilkan konten asli
     }
 
     private fun loadAds(){
@@ -215,5 +218,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             mediaPlayer.release()
         }
         super.onDestroy()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
