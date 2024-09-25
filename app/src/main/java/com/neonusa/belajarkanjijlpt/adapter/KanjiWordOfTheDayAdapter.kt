@@ -1,5 +1,6 @@
 package com.neonusa.belajarkanjijlpt.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,8 +49,16 @@ class KanjiWordOfTheDayAdapter(
         // Set checked icon based on is_checked flag
         if (kanjiWord.is_checked) {
             holder.checkedIcon.setImageResource(R.drawable.baseline_checked_circle_24)
+            holder.wordTextView.setTextColor(Color.parseColor("#329900"))
+            holder.furiganaTextView.visibility = View.GONE
+            holder.romajiTextView.visibility = View.GONE
+            holder.meanTextView.visibility = View.GONE
         } else {
             holder.checkedIcon.setImageResource(R.drawable.baseline_check_circle_outline_gray_24)
+            holder.wordTextView.setTextColor(Color.parseColor("#000000"))
+            holder.furiganaTextView.visibility = View.VISIBLE
+            holder.romajiTextView.visibility = View.VISIBLE
+            holder.meanTextView.visibility = View.VISIBLE
         }
 
         // Handle bookmark click
