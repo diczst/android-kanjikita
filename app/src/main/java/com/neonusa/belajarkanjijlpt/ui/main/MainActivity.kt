@@ -19,6 +19,7 @@ import com.neonusa.belajarkanjijlpt.databinding.ActivityMainBinding
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.ui.detail.DetailActivity
+import com.neonusa.belajarkanjijlpt.ui.kanjioftheday.KanjiOfTheDayActivity
 import com.neonusa.belajarkanjijlpt.ui.learned.LearnedActivity
 import com.neonusa.belajarkanjijlpt.ui.letter.LetterActivity
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
@@ -49,6 +50,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         loadAds()
         languageSetup()
 
+        binding.tvViewAllKotd.setOnClickListener {
+            val intent = Intent(this, KanjiOfTheDayActivity::class.java)
+            startActivity(intent)
+        }
+
         mainViewModel.getCheckedKanjiCount().observe(this){ learnedKanjiCount ->
             mainViewModel.getKanjiCount { totalKanjiCount ->
                 binding.tvTotalKanji.text = totalKanjiCount.toString()
@@ -65,8 +71,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
             }
         }
-
-
 
         val jlptLevelAdapter = JLPTLevelAdapter(jlptLevels){
             val intent = Intent(this,DetailActivity::class.java)
