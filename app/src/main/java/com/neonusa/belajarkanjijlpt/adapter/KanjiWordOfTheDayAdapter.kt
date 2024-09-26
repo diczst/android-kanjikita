@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.data.model.KanjiWord
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
+import java.util.Locale
 
 class KanjiWordOfTheDayAdapter(
     private val onItemClick: (KanjiWord) -> Unit,
@@ -37,8 +38,8 @@ class KanjiWordOfTheDayAdapter(
         holder.furiganaTextView.text = kanjiWord.furigana
         holder.romajiTextView.text = kanjiWord.romaji
 
-        // Setting meaning based on language preference
-        if (MyPreference.lang.equals("in")) {
+        val defaultLocale = Locale.getDefault()
+        if (defaultLocale.language.equals("in")) {
             val firstWord = kanjiWord.mean_id.split(";").first().trim()
             holder.meanTextView.text = firstWord
         } else {

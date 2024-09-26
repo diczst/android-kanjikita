@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         mediaPlayer = MediaPlayer.create(this, R.raw.learned)
 
         loadAds()
-        languageSetup()
 
         binding.tvViewAllKotd.setOnClickListener {
             val intent = Intent(this, KanjiOfTheDayActivity::class.java)
@@ -170,17 +169,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Request
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
-    }
-
-    private fun languageSetup(){
-        val defaultLocale = Locale.getDefault()
-        if(MyPreference.lang == "default"){
-            if(defaultLocale.language.equals("in")){
-                MyPreference.lang = "in"
-            } else {
-                MyPreference.lang = "en"
-            }
-        }
     }
 
     // Fungsi untuk memutar suara TTS

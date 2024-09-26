@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
 import com.neonusa.belajarkanjijlpt.utils.MyPreference
+import java.util.Locale
 
 class GridAdapter(private val items: List<KanjiItem>,
                   private val onItemClick: (KanjiItem) -> Unit) :
@@ -29,7 +30,8 @@ class GridAdapter(private val items: List<KanjiItem>,
         val kanjiItem = items[position]
         holder.kanjiTextView.text = kanjiItem.kanji
 
-        if(MyPreference.lang.equals("in")){
+        val defaultLocale = Locale.getDefault()
+        if (defaultLocale.language.equals("in")) {
             holder.meanTextView.text = kanjiItem.mean_id
         } else {
             holder.meanTextView.text = kanjiItem.mean_en
