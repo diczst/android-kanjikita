@@ -15,6 +15,7 @@ import com.neonusa.belajarkanjijlpt.utils.MyPreference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class KanjiWordAdapter(
     private val onItemClick: (KanjiWord) -> Unit,
@@ -41,8 +42,8 @@ class KanjiWordAdapter(
         holder.furiganaTextView.text = kanjiWord.furigana
         holder.romajiTextView.text = kanjiWord.romaji
 
-        // Setting meaning based on language preference
-        if (MyPreference.lang.equals("in")) {
+        val defaultLocale = Locale.getDefault()
+        if (defaultLocale.language.equals("in")) {
             val firstWord = kanjiWord.mean_id.split(";").first().trim()
             holder.meanTextView.text = firstWord
         } else {
