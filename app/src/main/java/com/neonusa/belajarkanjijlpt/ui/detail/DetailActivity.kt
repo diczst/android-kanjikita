@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.neonusa.belajarkanjijlpt.R
@@ -32,6 +37,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var jlptLevel: String
     private val detailViewModel: DetailViewModel by viewModel()
+    private var mInterstitialAd: InterstitialAd? = null
 
     // KANJI
     //==============================================================
@@ -52,6 +58,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         mediaPlayer = MediaPlayer.create(this, R.raw.learned)
 
         loadAds()
+        interstitialAdsSetup()
 
         tts = TextToSpeech(this, this)
         jlptLevel = intent.getStringExtra(JLPT_LEVEL)!!
@@ -115,6 +122,25 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         //==============================================
         loadKanjiData()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showInterstial()
+                if(mInterstitialAd != null){
+                    mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                        override fun onAdDismissedFullScreenContent() {
+                            mInterstitialAd = null
+                            finish()
+                        }
+                    }
+                } else {
+                    // in case no ads
+                    mInterstitialAd = null
+                    finish()
+                }
+            }
+        })
+
     }
 
     private fun playSound(){
@@ -130,9 +156,20 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         mediaPlayer.start()
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
-        finish()
+        showInterstial()
+        if(mInterstitialAd != null){
+            mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    mInterstitialAd = null
+                    finish()
+                }
+            }
+        } else {
+            // in case no ads
+            mInterstitialAd = null
+            finish()
+        }
         return super.onSupportNavigateUp()
     }
 
@@ -215,5 +252,26 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     companion object {
         const val JLPT_LEVEL = "JLPT_LEVEL"
+    }
+
+    private fun interstitialAdsSetup(){
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this,
+            getString(R.string.sample_adunit_interstitial),
+            adRequest, object : InterstitialAdLoadCallback() {
+
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                }
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                }
+            })
+    }
+
+    private fun showInterstial(){
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
+        }
     }
 }

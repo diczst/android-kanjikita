@@ -6,6 +6,9 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordOfTheDayAdapter
@@ -30,6 +33,7 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
         mediaPlayer = MediaPlayer.create(this, R.raw.learned)
+        loadAds()
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -95,7 +99,16 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
             }
         }
+    }
 
+    private fun loadAds(){
+        val adView = AdView(this)
+        adView.setAdSize(AdSize.BANNER)
+        adView.adUnitId = getResources().getString(R.string.sample_adunit_banner)
+        binding.adviewContainerMain.addView(adView)
+        // Request
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun onDestroy() {
