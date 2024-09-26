@@ -8,10 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <include layout="@layout/shimmer_item_rv_kotd"/>
-        <include layout="@layout/shimmer_item_rv_kotd"/>
-        <include layout="@layout/shimmer_item_rv_kotd"/>
-        <include layout="@layout/shimmer_item_rv_kotd"/>
+        <include layout="@layout/shimmer_item_rv_"/>
+        <include layout="@layout/shimmer_item_rv_"/>
+        <include layout="@layout/shimmer_item_rv_"/>
+        <include layout="@layout/shimmer_item_rv_"/>
     </LinearLayout>
 
 </com.facebook.shimmer.ShimmerFrameLayout>

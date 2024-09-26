@@ -198,7 +198,7 @@
 
                     <include
                         android:id="@+id/layout_shimmer_rv_kotd"
-                        layout="@layout/shimmer_rv_kotd"/>
+                        layout="@layout/shimmer_rv"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_kotd"
