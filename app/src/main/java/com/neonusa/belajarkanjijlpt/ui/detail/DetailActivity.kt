@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -107,6 +108,9 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val filteredKanjiWordItems = kanjiList.filter { it.kanji_word.contains(
                 firstKanji.kanji.toString())}
             kanjiWordAdapter.submitList(filteredKanjiWordItems)
+            binding.layoutShimmerRvKanjiWord.root.stopShimmer()
+            binding.layoutShimmerRvKanjiWord.root.visibility = View.GONE
+            binding.rvKanjiWords.visibility = View.VISIBLE
         // Log.d(this::class.simpleName, "onCreate: $kanjiList")
         }
         //==============================================

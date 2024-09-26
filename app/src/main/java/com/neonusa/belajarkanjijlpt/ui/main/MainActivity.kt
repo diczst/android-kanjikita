@@ -81,7 +81,9 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             mainViewModel.getKanjiCount { totalKanjiCount ->
                 binding.tvTotalKanji.text = totalKanjiCount.toString()
                 binding.tvLearnedKanji.text = learnedKanjiCount.toString()
-                stopShimmer()
+                binding.shimmerWordsLearned.stopShimmer()
+                binding.shimmerWordsLearned.visibility = View.GONE
+                binding.layoutWordsLearned.visibility = View.VISIBLE
 
                 // Make sure totalKanjiCount is not zero to avoid division by zero
                 if (totalKanjiCount > 0) {
@@ -133,6 +135,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             // Panggil data kanji setelah insert selesai
             mainViewModel.getRandomKanjisOfTheDay { kanjiList ->
                 kanjiWordOfTheDayAdapter.submitList(kanjiList.take(4)) // UI will update automatically
+                binding.layoutShimmerRvKotd.root.stopShimmer()
+                binding.layoutShimmerRvKotd.root.visibility = View.GONE
+                binding.rvKotd.visibility = View.VISIBLE
+
             }
         }
 
@@ -154,12 +160,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         // Mulai pemutaran setelah memvalidasi ulang
         mediaPlayer.start()
-    }
-
-    private fun stopShimmer() {
-        binding.shimmerWordsLearned.stopShimmer() // Hentikan animasi shimmer
-        binding.shimmerWordsLearned.visibility = View.GONE
-        binding.layoutWordsLearned.visibility = View.VISIBLE // Tampilkan konten asli
     }
 
     private fun loadAds(){

@@ -196,12 +196,17 @@
                         </LinearLayout>
                     </RelativeLayout>
 
+                    <include
+                        android:id="@+id/layout_shimmer_rv_kotd"
+                        layout="@layout/shimmer_rv"/>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_kotd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         tools:itemCount="4"
+                        android:visibility="gone"
                         tools:listitem="@layout/item_kanji_word_with_romaji_no_card"/>
 
                 </LinearLayout>
