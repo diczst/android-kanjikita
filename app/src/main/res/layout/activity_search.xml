@@ -5,9 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#f5f5f5"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.search.SearchActivity">
 
     <RelativeLayout
         android:id="@+id/layout_home_toolbar"
@@ -80,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:src="@drawable/baseline_bookmarks_24"
+                android:alpha="0"
                 app:tint="@color/white" />
 
         </LinearLayout>

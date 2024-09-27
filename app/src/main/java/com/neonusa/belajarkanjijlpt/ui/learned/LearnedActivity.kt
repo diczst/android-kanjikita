@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.neonusa.belajarkanjijlpt.BuildConfig
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordOfTheDayAdapter
@@ -30,6 +34,7 @@ class LearnedActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding = ActivityLearnedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
+        loadAds()
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -98,6 +103,16 @@ class LearnedActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         } else {
             Toast.makeText(this, getString(R.string.inisialisasi_tts_gagal), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun loadAds(){
+        val adView = AdView(this)
+        adView.setAdSize(AdSize.BANNER)
+        adView.adUnitId = BuildConfig.LEARNED_ACTIVITY
+        binding.adviewContainerMain.addView(adView)
+        // Request
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun onDestroy() {

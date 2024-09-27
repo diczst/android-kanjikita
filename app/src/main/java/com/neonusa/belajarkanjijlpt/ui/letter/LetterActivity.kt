@@ -6,6 +6,10 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.neonusa.belajarkanjijlpt.BuildConfig
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.HiraganaKatakanaAdapter
 import com.neonusa.belajarkanjijlpt.data.model.HiraganaKatakanaItem
@@ -37,6 +41,7 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding = ActivityLetterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         tts = TextToSpeech(this, this)
+        loadAds()
 
         letterType = intent.getStringExtra(LETTER_TYPE)!!
 
@@ -72,6 +77,7 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         binding.rvCombination.layoutManager = GridLayoutManager(this,3)
         binding.rvCombination.adapter = combinationHirakataAdapter
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -96,6 +102,16 @@ class LetterActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         } else {
             Toast.makeText(this, getString(R.string.inisialisasi_tts_gagal), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun loadAds(){
+        val adView = AdView(this)
+        adView.setAdSize(AdSize.BANNER)
+        adView.adUnitId = BuildConfig.HIRAKATA_ACTIVITY
+        binding.adviewContainerMain.addView(adView)
+        // Request
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun onDestroy() {

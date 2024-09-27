@@ -17,6 +17,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "MAIN_ACTIVITY", "${project.findProperty("MAIN_ACTIVITY")}")
+        buildConfigField("String", "SEARCH_ACTIVITY", "${project.findProperty("SEARCH_ACTIVITY")}")
+        buildConfigField("String", "LEARNED_ACTIVITY", "${project.findProperty("LEARNED_ACTIVITY")}")
+        buildConfigField("String", "DETAIL_ACTIVITY", "${project.findProperty("DETAIL_ACTIVITY")}")
+        buildConfigField("String", "KANJI_OF_THE_DAY_ACTIVITY", "${project.findProperty("KANJI_OF_THE_DAY_ACTIVITY")}")
+        buildConfigField("String", "HIRAKATA_ACTIVITY", "${project.findProperty("HIRAKATA_ACTIVITY")}")
+        buildConfigField("String", "DETAIL_ACTIVITY_INTERSTITIAL", "${project.findProperty("DETAIL_ACTIVITY_INTERSTITIAL")}")
+
+        buildFeatures {
+            buildConfig = true
+        }
     }
 
     buildTypes {
