@@ -21,6 +21,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.neonusa.belajarkanjijlpt.BuildConfig
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.GridAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
@@ -208,7 +209,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun loadAds(){
         val adView = AdView(this)
         adView.setAdSize(AdSize.BANNER)
-        adView.adUnitId = getResources().getString(R.string.sample_adunit_banner)
+        adView.adUnitId = BuildConfig.DETAIL_ACTIVITY
         binding.adviewContainerMain.addView(adView)
         // Request
         val adRequest = AdRequest.Builder().build()
@@ -257,7 +258,7 @@ class DetailActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun interstitialAdsSetup(){
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(this,
-            getString(R.string.sample_adunit_interstitial),
+            BuildConfig.DETAIL_ACTIVITY_INTERSTITIAL,
             adRequest, object : InterstitialAdLoadCallback() {
 
                 override fun onAdFailedToLoad(adError: LoadAdError) {

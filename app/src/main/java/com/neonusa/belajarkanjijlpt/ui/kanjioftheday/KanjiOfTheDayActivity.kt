@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.neonusa.belajarkanjijlpt.BuildConfig
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordOfTheDayAdapter
@@ -104,7 +105,7 @@ class KanjiOfTheDayActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun loadAds(){
         val adView = AdView(this)
         adView.setAdSize(AdSize.BANNER)
-        adView.adUnitId = getResources().getString(R.string.sample_adunit_banner)
+        adView.adUnitId = BuildConfig.KANJI_OF_THE_DAY_ACTIVITY
         binding.adviewContainerMain.addView(adView)
         // Request
         val adRequest = AdRequest.Builder().build()

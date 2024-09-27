@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.neonusa.belajarkanjijlpt.BuildConfig
 import com.neonusa.belajarkanjijlpt.R
 import com.neonusa.belajarkanjijlpt.adapter.KanjiWordAdapter
 import com.neonusa.belajarkanjijlpt.data.model.KanjiItem
@@ -106,7 +107,7 @@ class SearchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun loadAds(){
         val adView = AdView(this)
         adView.setAdSize(AdSize.BANNER)
-        adView.adUnitId = getResources().getString(R.string.sample_adunit_banner)
+        adView.adUnitId = BuildConfig.SEARCH_ACTIVITY
         binding.adviewContainerMain.addView(adView)
         // Request
         val adRequest = AdRequest.Builder().build()
