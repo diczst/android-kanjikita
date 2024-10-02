@@ -96,9 +96,16 @@ class LearnedActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts.setLanguage(Locale.JAPANESE) // Atur bahasa ke Jepang
+            // Coba atur bahasa ke Jepang
+            val result = tts.setLanguage(Locale.JAPANESE)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Toast.makeText(this, getString(R.string.bahasa_tidak_didukung), Toast.LENGTH_SHORT).show()
+                // Jika Jepang tidak didukung, atur ke bahasa default perangkat
+                val defaultLocale = Locale.getDefault()  // Mengambil bahasa bawaan perangkat
+                val defaultResult = tts.setLanguage(defaultLocale)
+                if (defaultResult == TextToSpeech.LANG_MISSING_DATA || defaultResult == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    tts.setLanguage(Locale.ENGLISH)
+//                    Toast.makeText(this, getString(R.string.bahasa_tidak_didukung), Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
             Toast.makeText(this, getString(R.string.inisialisasi_tts_gagal), Toast.LENGTH_SHORT).show()
